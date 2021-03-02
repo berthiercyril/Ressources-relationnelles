@@ -37,22 +37,22 @@
             <tbody>
             <?php while($row = $sql->fetch(PDO::FETCH_ASSOC)) : ?>    <!-- Boucle qui parcours le tableau et les affiches 1 par 1  -->
             <tr>
-                <td> <h2> <?php echo htmlspecialchars($row['titre']); ?> </h2></td>   <!-- Affiche le titre  -->
+                <td> <h2> Titre : <?php echo htmlspecialchars($row['titre']); ?> </h2></td>   <!-- Affiche le titre  -->
             </tr>
             <tr>
-                <td> <h3> <?php echo htmlspecialchars($row['typeCategorie']); ?> </h3></td>   <!-- Affiche la categorie  -->
+                <td> <h3> Type catégorie : <?php echo htmlspecialchars($row['typeCategorie']); ?> </h3></td>   <!-- Affiche la categorie  -->
             </tr>
             <tr>
-                <td> <h3> <?php echo htmlspecialchars($row['typeRessource']); ?> </h3></td>   <!-- Affiche la categorie  -->
+                <td> <h3> Type ressource : <?php echo htmlspecialchars($row['typeRessource']); ?> </h3></td>   <!-- Affiche la categorie  -->
             </tr>
             <tr>
-                <td> <h3> <?php echo htmlspecialchars($row['typeRelation']); ?> </h3></td>   <!-- Affiche la categorie  -->
+                <td> <h3> Type relation : <?php echo htmlspecialchars($row['typeRelation']); ?> </h3></td>   <!-- Affiche la categorie  -->
             </tr>
             <tr>
-                <td> <h3> Le  <?php echo htmlspecialchars($row['date']); ?> </h3> </td>   <!-- Affiche la date de publication  -->
+                <td> <h3> Publiée le  <?php echo htmlspecialchars($row['date']); ?> </h3> </td>   <!-- Affiche la date de publication  -->
             </tr>
             <tr>
-                <td> <p> Le  <?php echo htmlspecialchars($row['description']); ?> </p> </td>    <!-- Affiche le commentaire -->
+                <td> <p> <?php echo htmlspecialchars($row['description']); ?> </p> </td>    <!-- Affiche le commentaire -->
             </tr>
             <tr>
                 <td> <img src="<?php echo htmlspecialchars($row['cheminImage']);?>" height="450" width="450"/></td>    <!-- Affiche l'image -->
