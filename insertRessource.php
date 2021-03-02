@@ -1,5 +1,5 @@
 <?php
-    //session_start();
+    session_start();
     include('class/ressourceClass.php');
     //include('verification.php');
     include('config.php');
@@ -8,9 +8,9 @@
     if(isset($_POST['submit']))
     {
     // instanciation de l'objet
-    $ressource = new ressource($_POST['titre'], $_POST['description']);
+    $ressource = new ressource($_POST['titre'], $_POST['description'],$_POST['categories'],$_POST['ressources'],$_POST['relations']);
     // Ajout de la ressource dans la BDD
-    $ressource->AjouterArticle($_POST['titre'], $_POST['description'],$conn);
+    $ressource->AjouterRessource($_POST['titre'], $_POST['description'],$conn);
     // On place l'image dans le dossier Images
     $ressource->SauvImage();
 
@@ -20,6 +20,12 @@
     {
         echo "Erreur !";
         var_dump(isset($_POST['submit']));   
+        // instanciation de l'objet
+        $ressource = new ressource($_POST['titre'], $_POST['description'],$_POST['categories'],$_POST['ressources'],$_POST['relations']);
+        // Ajout de la ressource dans la BDD
+        $ressource->AjouterRessource($_POST['titre'], $_POST['description'],$conn);
+        // On place l'image dans le dossier Images
+        $ressource->SauvImage();
     }
 
  ?>

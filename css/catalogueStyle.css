@@ -1,0 +1,30 @@
+.topnav /* nav background color*/
+{
+    background-color: #333;/*5db075*/
+    overflow: hidden;
+}
+
+.topnav a /* Couleur écriture */
+{
+    float: left;
+    color: #F2F2F2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover
+{
+    background-color: #DDD;
+    color: black;
+}
+.topnav a.active
+{
+    background-color: #5db075;
+    color: white;
+}
+body{
+    background-color: white;
+    font-family: "Titillium Web", sans-serif;
+    margin: 0px;
+}

@@ -32,7 +32,7 @@
                 //
 
                 //PAGE SI IDENTIFICATION OK
-                header('Location: catalogue.php');
+                header('Location: view/catalogue.php');
                 ?>
 
             <!--PAGE SI IDENTIFICATION OK-->
@@ -42,17 +42,17 @@
             }
             else
             {
-                header('Location: login.php?erreur=1'); // utilisateur ou mdp incorrect
+                header('Location: view/login.php?erreur=1'); // utilisateur ou mdp incorrect
             }
         }
         else
         {
-            header('Location: login.php?erreur=2'); // utilisateur ou mdp vide
+            header('Location: view/login.php?erreur=2'); // utilisateur ou mdp vide
         }
     }
     else
     {
-        header('Location: login.php');
+        header('Location: view/login.php');
         //header('Location: www.google.com');
     }
     mysqli_close($db)
