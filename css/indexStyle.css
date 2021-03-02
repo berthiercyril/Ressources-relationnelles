@@ -1,0 +1,73 @@
+body{
+    background-color: white;
+    font-family: "Titillium Web", sans-serif;
+    margin: 0px;
+}
+h1{
+    color: black;
+    font-weight: 300;
+    font-size: 2em;
+    text-align: center;
+    font-weight: bolder;
+}
+#logo
+{
+    width: 31%;
+    height: auto;
+    margin: auto;
+    display: block;
+}
+.topnav /* nav background color*/
+{
+    background-color: #333;/*5db075*/
+    overflow: hidden;
+}
+
+.topnav a /* Couleur écriture */
+{
+    float: left;
+    color: #F2F2F2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover
+{
+    background-color: #DDD;
+    color: black;
+}
+.topnav a.active
+{
+    background-color: #5db075;
+    color: white;
+}
+
+/* Set a style for all buttons */
+
+button[type=button]{
+    background-color: #5db075;
+    color: white;
+    padding: 14px 20px;
+    display: block;
+    margin: auto;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+    width: 20%;
+    border-radius: 20px;
+}
+button[type=button]:hover{
+    background-color: #46a060;
+    color: white;
+}
+
+label{
+    color: white;
+}
+.case{
+    color: #24323D;
+}
+.req{
+    color: #5db075;
+}
