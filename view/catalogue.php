@@ -60,8 +60,8 @@
             <?php endwhile; ?>
             </tbody>
         </table>
-        <?php
-            session_start();
+        <!--<?php
+            /*session_start();
             if(isset($_GET['deconnexion']))
             {
                 if($_GET['deconnexion'] == true)
@@ -77,8 +77,8 @@
                 echo "Bonjour " . $user . " vous êtes connecté !";
             }
             
-
-        ?>
+*/
+        ?>-->
         <script src="" async defer></script>
     </body>
 </html>

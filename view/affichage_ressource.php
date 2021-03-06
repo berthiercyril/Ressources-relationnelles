@@ -16,6 +16,7 @@
         </div>
         <h1>Catalogue</h1>
         <?php
+        include('../manipulationBDD');
             try{
                 $base = new PDO('mysql:host=127.0.0.1; dbname=ressources_relationnelles', 'root', '');
                 $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

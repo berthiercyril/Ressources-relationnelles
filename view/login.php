@@ -20,6 +20,7 @@
             <a href="index.html">Accueil</a>
             <a class="active" href="#">Connexion</a>
             <a href="register.php">Inscription</a>
+            <a href="catalogueKevin.php">Catalogue</a>
         </div>
 
         <div id="container">

@@ -13,11 +13,12 @@
             <a href="index.html">Accueil</a>
             <a href="login.php">Connexion</a>
             <a href="register.php">Inscription</a>
+            <a class="active" href="#">Catalogue</a>
         </div>
         <h1>Catalogue KEVIN</h1>
 
         <?php
-            include('manipulationBDD.php');
+            include('../manipulationBDD.php');
             $mAffiche= new manipulationBDD();
 
             //echo "<h1>CATALOGUE KEVIN</h1></br></br>";
