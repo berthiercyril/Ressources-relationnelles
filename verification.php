@@ -29,5 +29,4 @@
         header('Location: view/login.php');
         //header('Location: www.google.com');
     }
-    mysqli_close($conn)
 ?>

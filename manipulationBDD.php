@@ -26,8 +26,8 @@
         public function ajouterDonnees($var_titre, $var_date_ajout, $var_description, $var_categories, $var_ressources, $var_relations, $conn)
         {
             $return = "";
-            $requete_insert =  "INSERT INTO ressource (titre, description, date, typeCategorie, typeRessource, typeRelation)
-            VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "');";
+            $requete_insert =  "INSERT INTO ressource (titre, description, date, typeCategorie, typeRessource, typeRelation, idUser)
+            VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "', '".$_SESSION['idUser']."');";
 
             $return = $return . "</br> La requete ici : " . $requete_insert . "</br>";
             $return = $return . $conn->exec($requete_insert);
@@ -52,6 +52,28 @@
                 echo "______________________________________________________________</br></br>";
             }
             $requete->closeCursor();
+        }
+
+        public function afficheMesRessources($conn)
+        {
+            
+            // Affiche le titre de l'article ainsi que sa date de création
+            try{
+                $requete = $conn->query('SELECT idRessource, titre, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date_ajout_fr FROM ressource WHERE idUser= '.$_SESSION['idUser'].' ORDER BY date DESC;');
+                }
+                catch(PDOException $e){
+                    die($e->getMessage());
+                }
+                
+                // Chaque titre est cliquable et redirige vers sa ressource
+                while($donnee = $requete->fetch())
+                {
+                    echo '<a href="affichage_ressource.php?ressource=' . $donnee['idRessource'] . '" >' . $donnee['titre'] . '</a>';
+                    echo "</br> le " . $donnee['date_ajout_fr'] . " </br>";
+                    echo "______________________________________________________________</br></br>";
+                }
+                $requete->closeCursor();
+
         }
 
         public function ajouterCommentaire($auteur, $commentaire, $idRessource, $conn)
@@ -79,12 +101,14 @@
         
         public function verificationLogin($conn, $username, $password)
         {
-            $verif = $conn->exec("SELECT * FROM utilisateur WHERE mail = '" . $username . "' AND mdp = '" . $password ."' ");
-            var_dump($verif);
-            //$res = $verif->fetch();
-            if(count($verif) > 0)
+
+            $req = $conn->query("SELECT COUNT(id_user) AS countIdUser, id_user FROM utilisateur WHERE mail = '" . $username . "' AND mdp = '" . $password ."' ");
+            $res = $req->fetch();
+            //print_r($res);
+            if($res['countIdUser'] > 0)
             {
                 $_SESSION['username'] = $username;
+                $_SESSION['idUser'] = $res['id_user'];
                 header('Location: view/indexLog.html');
             }
             else
@@ -93,6 +117,4 @@
             }
         }
     }
-    
-//$mManipulationBDD = new manipulationBDD();
  ?>

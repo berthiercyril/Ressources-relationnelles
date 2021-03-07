@@ -18,18 +18,16 @@
         <![endif]-->
         
         <div class="topnav">
-            <a class="active" href="index.html">Accueil</a>
+            <a href="index.html">Accueil</a>
             <a href="login.php">Connexion</a>
             <a href="register.php">Inscription</a>
             <a href="catalogueKevin.php">Catalogue</a>
-            <a href="creation.php">Créer une ressource</a>
-            <a href="mesRessources.php">Mon catalogue</a>
         </div>
         <br>
-        <h1>Ressources Relationnelles</h1>
+        <h1>Création</h1>
         
-        <div id="logo">
-            <img src="../images/Logo-removebg.png">
+        <div id="retour">
+            <p>Votre ressource à bien été ajoutée avec l'image</p> 
         </div>
         
         <script src="" async defer></script>
