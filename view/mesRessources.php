@@ -32,7 +32,7 @@
                 }
             ?>
         </div>
-        <h1>Catalogue KEVIN</h1>
+        <h1>Catalogue</h1>
 
         <?php
             include('../manipulationBDD.php');

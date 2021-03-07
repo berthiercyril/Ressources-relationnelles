@@ -16,7 +16,7 @@
         if($mail !== "" && $password !== "")
         {
             $VERIF = new manipulationBDD();
-            $VERIF->Connexion();
+            $VERIF->Connexion($conn);
             $VERIF->verificationLogin($conn, $mail, $password);
         }
         else
