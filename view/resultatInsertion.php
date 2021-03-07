@@ -27,7 +27,7 @@
         <h1>Création</h1>
         
         <div id="retour">
-            <p>Votre ressource à bien été ajoutée</p> 
+            <p>Votre ressource à bien été ajoutée sans l'image</p> 
         </div>
         
         <script src="" async defer></script>

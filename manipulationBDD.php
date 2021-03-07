@@ -2,10 +2,10 @@
     include("config.php");
     class manipulationBDD
     {
-        public function Connexion()
+        public function Connexion($conn)
         {
             try{
-                //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 echo "Connexion ok. </br>";
             }
             catch(Exeption $e){
@@ -57,7 +57,7 @@
         public function ajouterCommentaire($auteur, $commentaire, $idRessource, $conn)
         {
             $dateCommentaire = date('Y-m-d H:i:s');
-            $res = $conn->query("INSERT INTO commentaires VALUES ('', '$idRessource', '".$auteur."', '".$commentaire."', '".$dateCommentaire."')");
+            $res = $conn->query("INSERT INTO commentaires (idRessource, auteur, commentaire, dateCommentaire) VALUES ('$idRessource', '".$auteur."', '".$commentaire."', '".$dateCommentaire."')");
         }
 
         public function afficherCommentaire($conn)
@@ -76,9 +76,9 @@
             $req->closeCursor();
         }
 
+        
         public function verificationLogin($conn, $username, $password)
         {
-
             $verif = $conn->exec("SELECT * FROM utilisateur WHERE mail = '" . $username . "' AND mdp = '" . $password ."' ");
             var_dump($verif);
             //$res = $verif->fetch();
@@ -94,5 +94,5 @@
         }
     }
     
-$mManipulationBDD = new manipulationBDD();
+//$mManipulationBDD = new manipulationBDD();
  ?>
