@@ -22,7 +22,7 @@
             $mAffiche= new manipulationBDD();
 
             //echo "<h1>CATALOGUE KEVIN</h1></br></br>";
-            $mAffiche->afficheDonnees();
+            $mAffiche->afficheDonnees($conn);
         ?>
     </body>
 </html>
