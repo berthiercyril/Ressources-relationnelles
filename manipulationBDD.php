@@ -51,12 +51,13 @@
                 echo "</br> le " . $donnee['date_ajout_fr'] . " </br>";
                 echo "______________________________________________________________</br></br>";
             }
+            return $requete->fetchAll();
             $requete->closeCursor();
         }
 
         public function afficheMesRessources($conn)
         {
-            
+
             // Affiche le titre de l'article ainsi que sa date de création
             try{
                 $requete = $conn->query('SELECT idRessource, titre, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date_ajout_fr FROM ressource WHERE idUser= '.$_SESSION['idUser'].' ORDER BY date DESC;');
@@ -108,7 +109,7 @@
             {
                 $_SESSION['username'] = $username;
                 $_SESSION['idUser'] = $res['id_user'];
-                header('Location: view/indexLog.html');
+                header('Location: view/index.php');
             }
             else
             {

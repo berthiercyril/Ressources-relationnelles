@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -18,10 +21,23 @@
         <![endif]-->
         
         <div class="topnav">
-            <a class="active" href="index.html">Accueil</a>
-            <a href="login.php">Connexion</a>
-            <a href="register.php">Inscription</a>
-            <a href="catalogueKevin.php">Catalogue</a>
+            <a class="active" href="index.php">Accueil</a>
+            <a href="catalogue.php">Catalogue</a>
+            <?php
+                if (!empty($_SESSION['username'])) // Le visiteur est connecté
+                {
+                    echo '<a href="mesRessources.php">Mon Catalogue</a>';
+                    echo '<a href="creation.php">Créer une ressource</a>';
+                    echo '<a class="deconnexion" href="../deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
+                }
+                else // Le visiteur n'est pas connecté
+                {
+                   // echo 'vous n\'êtes pas connecté.';
+                    echo '<a class="connexion" href="login.php">Connexion</a>';
+                    echo '<a class="connexion" href="register.php">Inscription</a>';
+                }
+            ?>
+            
         </div>
         <br>
         <h1>Ressources Relationnelles</h1>

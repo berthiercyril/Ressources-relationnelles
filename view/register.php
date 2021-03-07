@@ -10,38 +10,34 @@
         <title>Ressources Relationnelles</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/registerStyle.css">
+        <link rel="stylesheet" href="../css/indexStyle.css">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="topnav">
-            <a href="index.html">Accueil</a>
-            <a href="login.php">Connexion</a>
-            <a class="active" href="#">Inscription</a>
-            <a href="catalogueKevin.php">Catalogue</a>
+            <a href="index.php">Accueil</a>
+            <a class="connexion" href="login.php">Connexion</a>
+            <a class="active, connexion" href="register.php">Inscription</a>
+            <a href="catalogue.php">Catalogue</a>
         </div>
 
         <div id="container">
             <form action="../ajoutUtilisateur.php" method="POST">
                 <h1>Inscription</h1>
 
-                <div class="field-wrap">
-                    <label>Nom <span class="req">*</span></label>
-                    <input type="text" placeholder="Entrez votre Nom" class="case" name="nom" required>
+                <div>
+                    <input type="text" placeholder="Nom"  class="inscription" name="nom" required>
                 </div>
-                <div class="field-wrap">
-                    <label>Prénom <span class="req">*</span></label>
-                    <input type="text" placeholder="Entrez votre Prénom" class="case" name="prenom" required>
+                <div>
+                    <input type="text" placeholder="Prénom"  class="inscription" name="prenom" required>
                 </div>
-                <div class="field-wrap">
-                    <label>Adresse mail <span class="req">*</span></label>
-                    <input type="email" placeholder="Entrez votre adresse mail" class="case" name="mail" required>
+                <div>
+                    <input type="email" placeholder="Email"  class="inscription" name="mail" required>
                 </div>
-                <div class="field-wrap">
-                    <label>Mot de passe <span class="req">*</span></label>
-                    <input type="password" placeholder="Entrez votre mot de passe" class="case" name="password" required>
+                <div>
+                    <input type="password" placeholder="Mot de passe"  class="inscription" name="password" required>
                 </div>
                 <input type="submit" id="submit" value="Inscription" class="button">
             </form>

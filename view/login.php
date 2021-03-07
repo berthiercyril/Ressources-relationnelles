@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -10,30 +13,27 @@
         <title>Ressources Relationnelles</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/loginStyle.css">
+        <link rel="stylesheet" href="../css/indexStyle.css">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="topnav">
-            <a href="index.html">Accueil</a>
-            <a class="active" href="#">Connexion</a>
-            <a href="register.php">Inscription</a>
-            <a href="catalogueKevin.php">Catalogue</a>
+            <a href="index.php">Accueil</a>
+            <a class="active, connexion" href="login.php">Connexion</a>
+            <a class="connexion" href="register.php">Inscription</a>
+            <a href="catalogue.php">Catalogue</a>
         </div>
 
         <div id="container">
             <form action="../verification.php" method="POST">
                 <h1>Connexion</h1>
-
-                <div class="field-wrap">
-                    <label>Adresse mail <span class="req">*</span></label>
-                    <input type="email" placeholder="Entrez votre adresse mail" class="case" name="username" required>
+                <div>
+                    <input type="email" placeholder="Email" name="username" id="email" required>
                 </div>
-                <div class="field-wrap">
-                    <label>Mot de passe <span class="req">*</span></label>
-                    <input type="password" placeholder="Entrez votre mot de passe" class="case" name="password" required>
+                <div>
+                    <input type="password" placeholder="Mot de passe" name="password" id="password" required>
                 </div>
                 <input type="submit" id="submit" value="Connexion" class="button">
                 <?php
