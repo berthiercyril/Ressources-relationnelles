@@ -1,11 +1,11 @@
 <?php
+    include("config.php");
     class manipulationBDD
     {
         public function Connexion()
         {
             try{
-                $base = new PDO('mysql:host=127.0.0.1; dbname=ressources_relationnelles', 'root', '');
-                $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 echo "Connexion ok. </br>";
             }
             catch(Exeption $e){
@@ -13,24 +13,23 @@
             }
         }
         // Méthode pour ajouter une ressource dans la BDD
-        public function ajouterDonnees($var_titre, $var_date_ajout, $var_chemin, $var_description, $var_categories, $var_ressources, $var_relations)
+        public function ajouterDonnees($var_titre, $var_date_ajout, $var_chemin, $var_description, $var_categories, $var_ressources, $var_relations,$conn)
         {
             $return = "";
             $requete_insert =  "INSERT INTO ressource (titre, description, date, typeCategorie, typeRessource, typeRelation, cheminImage)
             VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "', '" . $var_chemin . "');";
 
             $return = $return . "</br> La requete ici : " . $requete_insert . "</br>";
-            $return = $return . $base->exec($requete_insert);
+            $return = $return . $conn->exec($requete_insert);
             return $return;
         }
         // Méthode pour afficher les titres des resosurces
-        public function afficheDonnees()
+        public function afficheDonnees($conn)
         {
-            $base = new PDO('mysql:host=127.0.0.1; dbname=ressources_relationnelles', 'root', '');
-            $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // Affiche le titre de l'article ainsi que sa date de création
             try{
-            $requete = $base->query('SELECT idRessource, titre, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date_ajout_fr FROM ressource ORDER BY date DESC;');
+            $requete = $conn->query('SELECT idRessource, titre, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date_ajout_fr FROM ressource ORDER BY date DESC;');
             }
             catch(PDOException $e){
                 die($e->getMessage());
@@ -44,6 +43,28 @@
                 echo "______________________________________________________________</br></br>";
             }
             $requete->closeCursor();
+        }
+
+        public function ajouterCommentaire($auteur, $commentaire, $idRessource, $conn)
+        {
+            $dateCommentaire = date('Y-m-d H:i:s');
+            $res = $conn->query("INSERT INTO commentaires VALUES ('', '$idRessource', '".$auteur."', '".$commentaire."', '".$dateCommentaire."')");
+        }
+
+        public function afficherCommentaire($conn)
+        {
+            // Récupération des commentaires
+            $req = $conn->prepare('SELECT auteur, commentaire, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM commentaires WHERE idRessource = ? ORDER BY datecommentaire DESC');
+            $req->execute(array($_GET['ressource']));
+
+            while ($donnees = $req->fetch())
+            {
+            ?>
+            <p><strong><?php echo htmlspecialchars($donnees['auteur']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
+            <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
+            <?php
+            } // Fin de la boucle des commentaires
+            $req->closeCursor();
         }
     }
     
