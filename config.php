@@ -5,4 +5,5 @@
     $PARAM_utilisateur='root'; // nom d'utilisateur pour se connecter
     $PARAM_mot_passe=''; // mot de passe de l'utilisateur pour se connecter // Pour V finale MDP = root
     $conn = new PDO('mysql:host='.$PARAM_hote.';port='.$PARAM_port.';dbname='.$PARAM_nom_bd, $PARAM_utilisateur, $PARAM_mot_passe);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>

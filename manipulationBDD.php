@@ -5,7 +5,7 @@
         public function Connexion()
         {
             try{
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 echo "Connexion ok. </br>";
             }
             catch(Exeption $e){
@@ -15,8 +15,6 @@
         // Méthode pour ajouter une ressource avec image dans la BDD
         public function ajouterDonneesImg($var_titre, $var_date_ajout, $var_chemin, $var_description, $var_categories, $var_ressources, $var_relations, $conn)
         {
-            $base = new PDO('mysql:host=127.0.0.1; dbname=ressources_relationnelles', 'root', '');
-            $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $return = "";
             $requete_insert =  "INSERT INTO ressource (titre, description, date, typeCategorie, typeRessource, typeRelation, cheminImage)
             VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "', '" . $var_chemin . "');";
@@ -25,22 +23,19 @@
             $return = $return . $conn->exec($requete_insert);
             return $return;
         }
-        public function ajouterDonnees($var_titre, $var_date_ajout, $var_description, $var_categories, $var_ressources, $var_relations)
+        public function ajouterDonnees($var_titre, $var_date_ajout, $var_description, $var_categories, $var_ressources, $var_relations, $conn)
         {
-            $base = new PDO('mysql:host=127.0.0.1; dbname=ressources_relationnelles', 'root', '');
-            $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $return = "";
             $requete_insert =  "INSERT INTO ressource (titre, description, date, typeCategorie, typeRessource, typeRelation)
             VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "');";
 
             $return = $return . "</br> La requete ici : " . $requete_insert . "</br>";
-            $return = $return . $base->exec($requete_insert);
+            $return = $return . $conn->exec($requete_insert);
             return $return;
         }
         // Méthode pour afficher les titres des resosurces
         public function afficheDonnees($conn)
         {
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // Affiche le titre de l'article ainsi que sa date de création
             try{
             $requete = $conn->query('SELECT idRessource, titre, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date_ajout_fr FROM ressource ORDER BY date DESC;');
@@ -79,6 +74,23 @@
             <?php
             } // Fin de la boucle des commentaires
             $req->closeCursor();
+        }
+
+        public function verificationLogin($conn, $username, $password)
+        {
+
+            $verif = $conn->exec("SELECT * FROM utilisateur WHERE mail = '" . $username . "' AND mdp = '" . $password ."' ");
+            var_dump($verif);
+            //$res = $verif->fetch();
+            if(count($verif) > 0)
+            {
+                $_SESSION['username'] = $username;
+                header('Location: view/indexLog.html');
+            }
+            else
+            {
+                header('Location: view/login.php?erreur=1'); // utilisateur ou mdp incorrect
+            }
         }
     }
     
