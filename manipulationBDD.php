@@ -12,12 +12,26 @@
                 die('Erreur :' . $e->getMessage());
             }
         }
-        // Méthode pour ajouter une ressource dans la BDD
-        public function ajouterDonnees($var_titre, $var_date_ajout, $var_chemin, $var_description, $var_categories, $var_ressources, $var_relations)
+        // Méthode pour ajouter une ressource avec image dans la BDD
+        public function ajouterDonneesImg($var_titre, $var_date_ajout, $var_chemin, $var_description, $var_categories, $var_ressources, $var_relations)
         {
+            $base = new PDO('mysql:host=127.0.0.1; dbname=ressources_relationnelles', 'root', '');
+            $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $return = "";
             $requete_insert =  "INSERT INTO ressource (titre, description, date, typeCategorie, typeRessource, typeRelation, cheminImage)
             VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "', '" . $var_chemin . "');";
+
+            $return = $return . "</br> La requete ici : " . $requete_insert . "</br>";
+            $return = $return . $base->exec($requete_insert);
+            return $return;
+        }
+        public function ajouterDonnees($var_titre, $var_date_ajout, $var_description, $var_categories, $var_ressources, $var_relations)
+        {
+            $base = new PDO('mysql:host=127.0.0.1; dbname=ressources_relationnelles', 'root', '');
+            $base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $return = "";
+            $requete_insert =  "INSERT INTO ressource (titre, description, date, typeCategorie, typeRessource, typeRelation)
+            VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "');";
 
             $return = $return . "</br> La requete ici : " . $requete_insert . "</br>";
             $return = $return . $base->exec($requete_insert);

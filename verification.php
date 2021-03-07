@@ -32,7 +32,7 @@
                 //
 
                 //PAGE SI IDENTIFICATION OK
-                header('Location: view/catalogue.php');
+                header('Location: view/indexLog.html');
                 ?>
 
             <!--PAGE SI IDENTIFICATION OK-->

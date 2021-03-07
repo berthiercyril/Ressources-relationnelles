@@ -69,8 +69,11 @@
             $date= date('y/m/d H:i:s'); // Initialisation de l'heure
             $photo = $_FILES['fileselect']['name']; // on récupere le nom de l'image
             $cheminImage = "../images/".$photo; // on stock le chemin de l'image
-            $res = $conn->query("INSERT INTO ressource values ('','".$this->titre."','".$this->description."','".$date."','".$this->categories."','".$this->ressources."','".$this->relations."','".$cheminImage."')"); // requete pour enregistrer les infos de l'article dans la bdd
+        $requete = "INSERT INTO ressource values ('','".$this->titre."','".$this->description."','".$date."','".$this->categories."','".$this->ressources."','".$this->relations."','".$cheminImage."')";
+           $conn -> exec($requete);
+        //$res = $conn->query("INSERT INTO ressource values ('','".$this->titre."','".$this->description."','".$date."','".$this->categories."','".$this->ressources."','".$this->relations."','".$cheminImage."')"); // requete pour enregistrer les infos de l'article dans la bdd
             echo "L'article à bien été publié.";
+            
         }
 
         public function SauvImage()
