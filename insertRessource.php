@@ -80,7 +80,7 @@
         if($titre !== "" && $description !== "" && $categorie !== "" && $ressources !== "" && $relations !== "")
         {
             echo "On va ajouter une ressource sans l'image</br>";
-            if($insertion->ajouterDonnees($titre, $date, $description, $categorie, $ressources, $relations))//Ajouter $conn
+            if($insertion->ajouterDonnees($titre, $date, $description, $categorie, $ressources, $relations, $conn))//Ajouter $conn
             {
                 echo "Ajout";
                 header('Location:view/resultatInsertion.php');
