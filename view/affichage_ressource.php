@@ -22,7 +22,8 @@
                 {
                     echo '<a href="mesRessources.php">Mon Catalogue</a>';
                     echo '<a href="creation.php">Créer une ressource</a>';
-                    echo '<a class="connexion" href="../deconnexion.php">Déconnexion</a>';
+                    //echo '<a class="connexion" href="../deconnexion.php">Déconnexion</a>';
+                    echo '<a class="deconnexion" href="../deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
                 }
                 else // Le visiteur n'est pas connecté
                 {
