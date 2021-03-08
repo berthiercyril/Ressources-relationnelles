@@ -22,7 +22,7 @@
                 {
                     echo '<a href="mesRessources.php">Mon Catalogue</a>';
                     echo '<a href="creation.php">Créer une ressource</a>';
-                    echo '<a class="connexion" href="../deconnexion.php">deconnexion</a>';
+                    echo '<a class="connexion" href="../deconnexion.php">Déconnexion</a>';
                 }
                 else // Le visiteur n'est pas connecté
                 {
@@ -33,12 +33,12 @@
                 
             ?>
         </div>
-        <h1>Catalogue</h1>
+        <h1>Catalogue</h1></br></br>
         <?php
         include('../manipulationBDD.php');
             try{
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo "Connexion ok. </br>";
+                //echo "Connexion ok. </br>";
             }
             catch(Exeption $e){
                 die('Erreur :' . $e->getMessage());
@@ -53,15 +53,15 @@
             $size = getimagesize($donnees['cheminImage']);
             $height = $size[1] / ($size[0] / 450);
             ?>
-
-            <h2>Titre : <?php echo htmlspecialchars($donnees['titre']);?> </h2></br>
-            <h3>Type catégorie : <?php echo htmlspecialchars($donnees['typeCategorie']);?></h3></br>
-            <h3>Type ressource : <?php echo htmlspecialchars($donnees['typeRessource']);?></h3></br>
-            <h3>Type relation : <?php echo htmlspecialchars_decode($donnees['typeRelation']);?></h3></br>
-            <h3>Description : </h3> <p><?php echo nl2br(htmlspecialchars($donnees['description']));?></p></br>
-            <img src="<?php echo $donnees['cheminImage']?>" width='450' height='<?php echo $height?>'> <!--/!\ Chemin à changer/!\-->
-            <h3>Publiée le : <?php echo htmlspecialchars($donnees['date_ajout_fr']);?></h3></br>
-
+            <div class="contenu_ressource">
+                <h2>Titre : <?php echo htmlspecialchars($donnees['titre']);?> </h2></br>
+                <h3>Type catégorie : <?php echo htmlspecialchars($donnees['typeCategorie']);?></h3></br>
+                <h3>Type ressource : <?php echo htmlspecialchars($donnees['typeRessource']);?></h3></br>
+                <h3>Type relation : <?php echo htmlspecialchars_decode($donnees['typeRelation']);?></h3></br>
+                <h3>Description : </h3> <p><?php echo nl2br(htmlspecialchars($donnees['description']));?></p></br>
+                <img src="<?php echo $donnees['cheminImage']?>" width='450' height='<?php echo $height?>'> <!--/!\ Chemin à changer/!\-->
+                <h3>Publiée le : <?php echo htmlspecialchars($donnees['date_ajout_fr']);?></h3></br>
+            </div>
 <?php
                 // Affiche le résultat de la requete
             //echo "<h1>" . htmlspecialchars($donnees['titre']) . "</h1></br>";
@@ -75,12 +75,13 @@
             echo "</br><a href='catalogue.php'>Retour au catalogue</a>";
         ?>
         <h2>Commentaires</h2>
-        
-        <form action="<?php echo' ../ajoutCommentaire.php?ressource=' . $_GET["ressource"] . ''?>" method="POST"> <!-- on passe l'id ressource en url -->
+        <div class="test_com">
+        <form action="<?php echo' ../ajoutCommentaire.php?ressource=' . $_GET["ressource"] . ''?>" method="POST" > <!-- on passe l'id ressource en url -->
             <input type="text" name="auteur" id="auteur" placeholder="Nom"><br>
             <textarea id="commentaire" name="commentaire" placeholder="Ecrivez votre texte ici" rows="3" cols="60"></textarea><br>
             <input type="submit" id="submit" value="Envoyer">
         </form>
+        </div>
         
         <?php
             $commentaire = new manipulationBDD();

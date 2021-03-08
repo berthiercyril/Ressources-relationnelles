@@ -19,7 +19,7 @@
         <div class="topnav">
             <a href="index.php">Accueil</a>
             <a class="connexion" href="login.php">Connexion</a>
-            <a class="active, connexion" href="register.php">Inscription</a>
+            <a class="active connexion" href="register.php">Inscription</a>
             <a href="catalogue.php">Catalogue</a>
         </div>
 

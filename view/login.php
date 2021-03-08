@@ -21,7 +21,7 @@
         <![endif]-->
         <div class="topnav">
             <a href="index.php">Accueil</a>
-            <a class="active, connexion" href="login.php">Connexion</a>
+            <a class="active connexion" href="login.php">Connexion</a>
             <a class="connexion" href="register.php">Inscription</a>
             <a href="catalogue.php">Catalogue</a>
         </div>
@@ -50,7 +50,7 @@
                         $succes = $_GET['succes'];
                         if($succes == 1)
                         {
-                            echo "<p style='color:white'>Votre compte à été créé avec succès, vous pouvez maintenant vous identifier</p>";
+                            echo "<p style='color:black'>Votre compte à été créé avec succès, vous pouvez maintenant vous identifier</p>";
                         }
                     }
                 ?>

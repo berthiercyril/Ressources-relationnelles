@@ -6,7 +6,7 @@
         {
             try{
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo "Connexion ok. </br>";
+                //echo "Connexion ok. </br>";
             }
             catch(Exeption $e){
                 die('Erreur :' . $e->getMessage());
@@ -45,13 +45,17 @@
             }
             
             // Chaque titre est cliquable et redirige vers sa ressource
+            echo '<div class="list-group">';
             while($donnee = $requete->fetch())
             {
-                echo '<a href="affichage_ressource.php?ressource=' . $donnee['idRessource'] . '" >' . $donnee['titre'] . '</a>';
-                echo "</br> le " . $donnee['date_ajout_fr'] . " </br>";
-                echo "______________________________________________________________</br></br>";
+                echo '<div class="list-group-item list-group-item-action">';
+                    echo '<a href="affichage_ressource.php?ressource=' . $donnee['idRessource'] . '" >' . $donnee['titre'] . '</a></br>';
+                    echo "</br> le " . $donnee['date_ajout_fr'] . " </br>";
+                    //echo "______________________________________________________________</br></br>";
+                echo '</div>';
             }
-            return $requete->fetchAll();
+            echo '</div>';
+
             $requete->closeCursor();
         }
 
@@ -67,12 +71,16 @@
                 }
                 
                 // Chaque titre est cliquable et redirige vers sa ressource
+                echo '<div class="list-group">';
                 while($donnee = $requete->fetch())
                 {
-                    echo '<a href="affichage_ressource.php?ressource=' . $donnee['idRessource'] . '" >' . $donnee['titre'] . '</a>';
-                    echo "</br> le " . $donnee['date_ajout_fr'] . " </br>";
-                    echo "______________________________________________________________</br></br>";
+                    echo '<div class="list-group-item list-group-item-action">';
+                        echo '<a href="affichage_ressource.php?ressource=' . $donnee['idRessource'] . '" >' . $donnee['titre'] . '</a></br>';
+                        echo "</br> le " . $donnee['date_ajout_fr'] . " </br>";
+                        //echo "______________________________________________________________</br></br>";
+                    echo '</div>';
                 }
+                echo '</div>';
                 $requete->closeCursor();
 
         }
