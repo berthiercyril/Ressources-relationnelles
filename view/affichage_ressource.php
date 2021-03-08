@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,13 +9,29 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/catalogueStyle.css">
+        <link rel="stylesheet" href="../css/indexStyle.css">
     </head>
     <body>
         <div class="topnav">
-            <a href="index.html">Accueil</a>
-            <a href="login.php">Connexion</a>
-            <a href="register.php">Inscription</a>
+            <a href="index.php">Accueil</a>
+            <a href="catalogue.php">Catalogue</a>
+            <!--<a href="login.php">Connexion</a>
+            <a href="register.php">Inscription</a>-->
+            <?php
+                if (!empty($_SESSION['username'])) // Le visiteur est connecté
+                {
+                    echo '<a href="mesRessources.php">Mon Catalogue</a>';
+                    echo '<a href="creation.php">Créer une ressource</a>';
+                    echo '<a class="connexion" href="../deconnexion.php">deconnexion</a>';
+                }
+                else // Le visiteur n'est pas connecté
+                {
+                    //echo 'vous n\'êtes pas connecté.';
+                    echo '<a class="connexion" href="login.php">Connexion</a>';
+                    echo '<a class="connexion" href="register.php">Inscription</a>';
+                }
+                
+            ?>
         </div>
         <h1>Catalogue</h1>
         <?php
@@ -53,7 +72,7 @@
             //echo "<img src='" . $donnees['cheminImage'] . "'></br>";
             //echo "<h2>Publiée le : " . $donnees['date_ajout_fr'] . "</h2></br>";
             $requete->closeCursor(); //on libère le curseur pour la prochaine requête            
-            echo "</br><a href='catalogueKevin.php'>Retour au catalogue</a>";
+            echo "</br><a href='catalogue.php'>Retour au catalogue</a>";
         ?>
         <h2>Commentaires</h2>
         

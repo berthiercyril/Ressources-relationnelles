@@ -17,24 +17,48 @@ h1{
     margin: auto;
     display: block;
 }
+.topnav a.connexion
+{
+    float: right;
+}
+.topnav a.deconnexion
+{
+    float: right;
+    padding-bottom: 6px;
+    padding-top: 10px;
+    padding-right: 21px;
+}
+
+.topnav a img
+{
+    width: 150%;
+}
+
 .topnav /* nav background color*/
 {
     background-color: #333;/*5db075*/
     overflow: hidden;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+
 }
 
 .topnav a /* Couleur écriture */
 {
     float: left;
     color: #F2F2F2;
-    text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    border-radius: 15px;
+    font-weight: bold;
 }
 .topnav a:hover
 {
-    background-color: #DDD;
+    background-color: #e6e6e6;
     color: black;
 }
 .topnav a.active
@@ -45,29 +69,71 @@ h1{
 
 /* Set a style for all buttons */
 
-button[type=button]{
+input[type=submit]{
     background-color: #5db075;
     color: white;
     padding: 14px 20px;
-    display: block;
-    margin: auto;
     border: none;
     cursor: pointer;
+    width: 100%;
     font-weight: bolder;
-    width: 20%;
     border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 20px;
 }
-button[type=button]:hover{
+input[type=submit]:hover{
     background-color: #46a060;
     color: white;
 }
 
-label{
-    color: white;
+#container{
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 4%;
+    
 }
-.case{
-    color: #24323D;
+form{
+    width: 100%;
+    padding: 30px;
+    border-radius: 10px;
+    left: 50%;
+    border-color:dimgrey;
+    border-style: solid;
 }
-.req{
-    color: #5db075;
+#container h1{
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+#titre,#description,#password,#email, .inscription{
+    width: 400px;
+
+
+    background: #F6F6F6;
+
+    color: #7e7b7b;
+    border: 1px solid #E8E8E8;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+    font-family: "Titillium Web", sans-serif;
+    padding-left: 10px;
+}
+
+#description{
+    height: 80px;
+    
+}
+
+#select{
+    background: #F9F9F9;
+    border: 1px solid #E6E6E6;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
 }

@@ -1,3 +1,8 @@
+.topnav a.connexion
+{
+    float: right;
+}
+
 .topnav /* nav background color*/
 {
     background-color: #333;/*5db075*/
