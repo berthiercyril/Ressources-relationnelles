@@ -51,7 +51,7 @@
                 echo "</br> le " . $donnee['date_ajout_fr'] . " </br>";
                 echo "______________________________________________________________</br></br>";
             }
-            return $requete->fetchAll();
+            
             $requete->closeCursor();
         }
 
@@ -117,5 +117,30 @@
                 header('Location: view/login.php?erreur=1'); // utilisateur ou mdp incorrect
             }
         }
+
+        public function affichageTypeRessources($conn)
+        {
+
+            $sql = $conn->query("SELECT lib_ressource FROM  type_ressources ");   
+            //$res = $sql->fetchall();
+            $_SESSION['typeSelect'] = $sql;
+        }
+
+        public function affichageTypeCategories($conn)
+        {
+
+            $sql = $conn->query("SELECT lib_categorie FROM  type_categories ");   
+            $_SESSION['typeSelect'] = $sql;
+        }
+
+        public function affichageTypeRelations($conn)
+        {
+
+            $sql = $conn->query("SELECT lib_relation FROM  type_relations ");   
+            //$res = $sql->fetchall();
+            $_SESSION['typeSelect'] = $sql;
+        }
+
+
     }
  ?>

@@ -21,7 +21,7 @@
         <![endif]-->
         <div class="topnav">
             <a href="index.php">Accueil</a>
-            <a class="active, connexion" href="login.php">Connexion</a>
+            <a class="active connexion" href="#">Connexion</a>
             <a class="connexion" href="register.php">Inscription</a>
             <a href="catalogue.php">Catalogue</a>
         </div>
