@@ -103,7 +103,7 @@
             <div class="commentaires">
             <p><strong><?php echo htmlspecialchars($donnees['auteur']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
             <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
-            </div>
+            </div><hr class="solid">
             <?php 
             } // Fin de la boucle des commentaires
             $req->closeCursor();

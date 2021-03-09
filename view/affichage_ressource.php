@@ -35,7 +35,7 @@
                 
             ?>
         </div>
-        <h1>Catalogue</h1></br></br>
+        <br><br>
         <?php
         include('../manipulationBDD.php');
             try{
@@ -56,14 +56,14 @@
             $height = $size[1] / ($size[0] / 450);
             ?>
             <div class="contenu_ressource">
-                <h2 class="titreRessource">Titre : <?php echo htmlspecialchars($donnees['titre']);?> </h2></br>
+                <h2 class="titre">Titre : <?php echo htmlspecialchars($donnees['titre']);?> </h2></br>
                 <h3>Type catégorie : <?php echo htmlspecialchars($donnees['typeCategorie']);?></h3></br>
                 <h3>Type ressource : <?php echo htmlspecialchars($donnees['typeRessource']);?></h3></br>
                 <h3>Type relation : <?php echo htmlspecialchars_decode($donnees['typeRelation']);?></h3></br><hr class="solid">
                 <h3> Contenu : <br><br></h3> <p><?php echo nl2br(htmlspecialchars($donnees['description']));?></p></br>
-                <img src="<?php echo $donnees['cheminImage']?>" class="img-fluid" width='450' height='<?php echo $height?>'> <!--/!\ Chemin à changer/!\-->
-                <h3>Publiée le : <?php echo htmlspecialchars($donnees['date_ajout_fr']);?></h3></br>
-                </br><a href='catalogue.php'>Retour au catalogue</a>
+                <div class="div-img"><img src="<?php echo $donnees['cheminImage']?>" class="img-fluid" width='450' height='<?php echo $height?>'></div> <!--/!\ Chemin à changer/!\-->
+                <br><h3 id="date">Publiée le : <?php echo htmlspecialchars($donnees['date_ajout_fr']);?></h3>
+                <a href="catalogue.php" class="btn btn-primary">Retour au catalogue</a>
             </div>
 <?php
                 // Affiche le résultat de la requete
@@ -78,7 +78,7 @@
         ?>
         
         <div class="commentaires">
-            <h2>Commentaires</h2>
+            <h2 class="titre">Commentaires</h2>
             <form action="<?php echo' ../ajoutCommentaire.php?ressource=' . $_GET["ressource"] . ''?>" method="POST" > <!-- on passe l'id ressource en url -->
                 <input type="text" class="form-control" name="auteur" id="auteur" placeholder="Nom"><br>
                 <textarea class="form-control" id="commentaire" name="commentaire" placeholder="Ecrivez votre texte ici" rows="3" cols="60"></textarea><br>
