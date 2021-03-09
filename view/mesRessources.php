@@ -37,8 +37,6 @@
         <?php
             include('../manipulationBDD.php');
             $AfficheMesRessources= new manipulationBDD();
-
-            //echo "<h1>CATALOGUE KEVIN</h1></br></br>";
             $AfficheMesRessources->afficheMesRessources($conn);
         ?>
     </body>
