@@ -52,11 +52,11 @@
                     $typeSelect = new manipulationBDD;
                     //$type = 'ressources';
                     //$lib = 'ressource';
-                    $typeSelect->affichageTypeCategories($conn);
+                    $res = $typeSelect->affichageTypeCategories($conn);
                 ?>
                     <select name="categories" id="select">
                         <option value="">--Choisissez une catégorie--</option>
-                        <?php while($row = $_SESSION['typeSelect']->fetch(PDO::FETCH_ASSOC)) : ?>
+                        <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) : ?>
                         <option value=""> <?php echo htmlspecialchars($row['lib_categorie']); ?></option>
                         <?php endwhile; ?>
                     </select><br>
@@ -64,11 +64,11 @@
                     //$typeSelect = new manipulationBDD;
                     //$type = 'ressources';
                     //$lib = 'ressource';
-                    $typeSelect->affichageTypeRessources($conn);
+                    $res = $typeSelect->affichageTypeRessources($conn);
                     ?>
                     <select name="ressources" id="select">
                         <option value="">--Choisissez une ressource--</option>
-                        <?php while($row = $_SESSION['typeSelect']->fetch(PDO::FETCH_ASSOC)) : ?>
+                        <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) : ?>
                         <option value=""> <?php echo htmlspecialchars($row['lib_ressource']); ?></option>
                         <?php endwhile; ?>
                     </select><br>
@@ -76,11 +76,11 @@
                     //$typeSelect = new manipulationBDD;
                     //$type = 'ressources';
                     //$lib = 'ressource';
-                    $typeSelect->affichageTypeRelations($conn);
+                    $res = $typeSelect->affichageTypeRelations($conn);
                     ?>
                     <select name="relations" id="select">
                         <option value="">--Choisissez une relation--</option>
-                        <?php while($row = $_SESSION['typeSelect']->fetch(PDO::FETCH_ASSOC)) : ?>
+                        <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) : ?>
                         <option value=""> <?php echo htmlspecialchars($row['lib_relation']); ?></option>
                         <?php endwhile; ?>
                     </select>

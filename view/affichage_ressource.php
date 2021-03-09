@@ -9,6 +9,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/indexStyle.css">
     </head>
     <body>
@@ -55,13 +56,14 @@
             $height = $size[1] / ($size[0] / 450);
             ?>
             <div class="contenu_ressource">
-                <h2>Titre : <?php echo htmlspecialchars($donnees['titre']);?> </h2></br>
+                <h2 class="titreRessource">Titre : <?php echo htmlspecialchars($donnees['titre']);?> </h2></br>
                 <h3>Type catégorie : <?php echo htmlspecialchars($donnees['typeCategorie']);?></h3></br>
                 <h3>Type ressource : <?php echo htmlspecialchars($donnees['typeRessource']);?></h3></br>
-                <h3>Type relation : <?php echo htmlspecialchars_decode($donnees['typeRelation']);?></h3></br>
-                <h3>Description : </h3> <p><?php echo nl2br(htmlspecialchars($donnees['description']));?></p></br>
-                <img src="<?php echo $donnees['cheminImage']?>" width='450' height='<?php echo $height?>'> <!--/!\ Chemin à changer/!\-->
+                <h3>Type relation : <?php echo htmlspecialchars_decode($donnees['typeRelation']);?></h3></br><hr class="solid">
+                <h3> Contenu : <br><br></h3> <p><?php echo nl2br(htmlspecialchars($donnees['description']));?></p></br>
+                <img src="<?php echo $donnees['cheminImage']?>" class="img-fluid" width='450' height='<?php echo $height?>'> <!--/!\ Chemin à changer/!\-->
                 <h3>Publiée le : <?php echo htmlspecialchars($donnees['date_ajout_fr']);?></h3></br>
+                </br><a href='catalogue.php'>Retour au catalogue</a>
             </div>
 <?php
                 // Affiche le résultat de la requete
@@ -73,15 +75,15 @@
             //echo "<img src='" . $donnees['cheminImage'] . "'></br>";
             //echo "<h2>Publiée le : " . $donnees['date_ajout_fr'] . "</h2></br>";
             $requete->closeCursor(); //on libère le curseur pour la prochaine requête            
-            echo "</br><a href='catalogue.php'>Retour au catalogue</a>";
         ?>
-        <h2>Commentaires</h2>
-        <div class="test_com">
-        <form action="<?php echo' ../ajoutCommentaire.php?ressource=' . $_GET["ressource"] . ''?>" method="POST" > <!-- on passe l'id ressource en url -->
-            <input type="text" name="auteur" id="auteur" placeholder="Nom"><br>
-            <textarea id="commentaire" name="commentaire" placeholder="Ecrivez votre texte ici" rows="3" cols="60"></textarea><br>
-            <input type="submit" id="submit" value="Envoyer">
-        </form>
+        
+        <div class="commentaires">
+            <h2>Commentaires</h2>
+            <form action="<?php echo' ../ajoutCommentaire.php?ressource=' . $_GET["ressource"] . ''?>" method="POST" > <!-- on passe l'id ressource en url -->
+                <input type="text" class="form-control" name="auteur" id="auteur" placeholder="Nom"><br>
+                <textarea class="form-control" id="commentaire" name="commentaire" placeholder="Ecrivez votre texte ici" rows="3" cols="60"></textarea><br>
+                <input type="submit" id="submit" value="Envoyer">
+            </form><br>
         </div>
         
         <?php

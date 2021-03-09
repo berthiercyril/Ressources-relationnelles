@@ -100,9 +100,11 @@
             while ($donnees = $req->fetch())
             {
             ?>
+            <div class="commentaires">
             <p><strong><?php echo htmlspecialchars($donnees['auteur']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
             <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
-            <?php
+            </div>
+            <?php 
             } // Fin de la boucle des commentaires
             $req->closeCursor();
         }
@@ -130,23 +132,21 @@
         {
 
             $sql = $conn->query("SELECT lib_ressource FROM  type_ressources ");   
-            //$res = $sql->fetchall();
-            $_SESSION['typeSelect'] = $sql;
+            return $sql;
         }
 
         public function affichageTypeCategories($conn)
         {
 
             $sql = $conn->query("SELECT lib_categorie FROM  type_categories ");   
-            $_SESSION['typeSelect'] = $sql;
+            return $sql;
         }
 
         public function affichageTypeRelations($conn)
         {
 
             $sql = $conn->query("SELECT lib_relation FROM  type_relations ");   
-            //$res = $sql->fetchall();
-            $_SESSION['typeSelect'] = $sql;
+            return $sql;
         }
 
 
