@@ -137,3 +137,69 @@ form{
     margin-bottom: 10px;
     height: 30px;
 }
+
+/*.article
+{
+    text-align: center;
+    border: solid #5db075;
+    border-radius: 20px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 1%;
+}
+.azerty
+{
+    border: none;
+    border-radius: 20px;
+    /*background-color: rgba(93, 176, 116, 0.226);*/
+    /*opacity: 0.5;*/
+    /*margin-left: 20%;
+    margin-right: 20%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+}*/
+.list-group-item{
+    text-align: center;
+    /*border-color: #5db075;*/
+    /*border-style: solid;*/
+            border-radius: 20px;
+            
+    padding-top: 1%;
+    padding-bottom: 1%;
+    /*padding-left: 20%;*/
+    /*margin-left: 25%;
+    margin-right: 25%;*/
+    margin-bottom: 2%;
+}
+.list-group-item a:link{
+    text-decoration: none;
+    
+}
+.list-group-item a{
+    color: black;
+    
+}
+.list-group{
+    /*border: solid blue;*/
+    border-radius: 20px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.list-group-item-action{
+
+    border:3px solid #5db075;
+}
+
+.contenu_ressource{
+    /*margin-left: 2%;*/
+    /*padding-right: 2%;*/
+}
+.contenu_ressource p{
+    /*text-align: justify;*/
+}
+.test_com form{
+    margin-right: 40%;
+}

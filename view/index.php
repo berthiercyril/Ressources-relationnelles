@@ -42,7 +42,7 @@
         <br>
         <h1>Ressources Relationnelles</h1>
         
-        <div id="logo">
+        <div id="logo" >
             <img src="../images/Logo-removebg.png">
         </div>
         

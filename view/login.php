@@ -50,7 +50,7 @@
                         $succes = $_GET['succes'];
                         if($succes == 1)
                         {
-                            echo "<p style='color:white'>Votre compte à été créé avec succès, vous pouvez maintenant vous identifier</p>";
+                            echo "<p style='color:black'>Votre compte à été créé avec succès, vous pouvez maintenant vous identifier</p>";
                         }
                     }
                 ?>
