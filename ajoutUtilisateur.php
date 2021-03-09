@@ -1,31 +1,37 @@
 <?php
+    include('config.php');
+    include('manipulationBDD.php');
+    
     if(isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['nom']) && isset($_POST['prenom']))
     {
-        $db_username = "root";
-        $db_password = "root";
-        $db_name = "ressources_relationnelles";
-        $db_host = "127.0.0.1";
-        $db = mysqli_connect($db_host, $db_username, $db_password, $db_name)
-        or die("could not connect to database");
-
+        $AJOUT =new manipulationBDD();
+        $connexion = $AJOUT->Connexion($conn);
         // On applique les deux fonctions mysqli_real_escape_string et htmlspecialchars
         // pour éliminer toute attaque de type injection SQL et XSS
-        $mail = mysqli_real_escape_string($db, htmlspecialchars($_POST['mail']));
-        $password = mysqli_real_escape_string($db, htmlspecialchars($_POST['password']));
-        $nom = mysqli_real_escape_string($db, htmlspecialchars($_POST['nom']));
-        $prenom = mysqli_real_escape_string($db, htmlspecialchars($_POST['prenom']));
+        /*$mail = $connexion->real_escape_string(htmlspecialchars($_POST['mail']));
+        $password = mysqli_real_escape_string($conn, htmlspecialchars($_POST['password']));
+        $nom = mysqli_real_escape_string($conn, htmlspecialchars($_POST['nom']));
+        $prenom = mysqli_real_escape_string($conn, htmlspecialchars($_POST['prenom']));*/
+        $mail = $_POST['mail'];
+        $password = $_POST['password'];
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
 
         if($mail !== "" && $password !== "" && $nom !== "" && $prenom !== "")
         {
-            $requete = "INSERT INTO utilisateur (mail, mdp, nom, prenom) VALUES ('" . $mail . "', '" . $password . "', '" . $nom . "', '" . $prenom . "');";
-            $exec_requete = mysqli_query($db, $requete);
-            if(!$exec_requete)
+
+            
+            $hash = $AJOUT->hashPassword($password);
+            
+
+            
+            if($AJOUT->ajouterUtilisateur($conn, $mail, $hash, $nom, $prenom))
             {
                 echo "Une erreur est survenue lors de l'insertion des données.";
             }
             else
             {
-                header('Location: login.php?succes=1'); // utilisateur ou mdp incorrect
+                header('Location: view/login.php?succes=1'); // utilisateur ajouté
             }
         }
     }

@@ -203,3 +203,6 @@ form{
 .test_com form{
     margin-right: 40%;
 }
+.list-group-item+.list-group-item {
+    border-top-width: 3px;
+}

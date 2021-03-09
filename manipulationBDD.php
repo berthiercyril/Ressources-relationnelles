@@ -108,22 +108,59 @@
         }
 
         
-        public function verificationLogin($conn, $username, $password)
+        public function verificationLogin($conn, $mail, $password)
         {
-
-            $req = $conn->query("SELECT COUNT(id_user) AS countIdUser, id_user FROM utilisateur WHERE mail = '" . $username . "' AND mdp = '" . $password ."' ");
+            $req = $conn->query("SELECT id_user, mdp FROM utilisateur WHERE mail = '$mail'");
+                //$req = $conn->query("SELECT COUNT(id_user) AS countIdUser, id_user FROM utilisateur WHERE mail = '" . $username . "' AND mdp = '" . $password ."' ");
             $res = $req->fetch();
             //print_r($res);
-            if($res['countIdUser'] > 0)
+            $hashed_password = $res['mdp'];
+            echo "Password = ". $password . " | hashed_password = ". $hashed_password;
+            if(password_verify($password, $hashed_password))
             {
-                $_SESSION['username'] = $username;
+                $_SESSION['username'] = $mail;
+                $_SESSION['idUser'] = $res['id_user'];
+                header('Location: view/index.php');
+            }else
+            {
+                header('Location: view/login.php?erreur=1'); // utilisateur ou mdp incorrect
+            }
+            /*if($res['countIdUser'] > 0)
+            {
+                $_SESSION['mail'] = $mail;
                 $_SESSION['idUser'] = $res['id_user'];
                 header('Location: view/index.php');
             }
             else
             {
                 header('Location: view/login.php?erreur=1'); // utilisateur ou mdp incorrect
+            }*/
+        }
+        public function verifyPassword($password, $hashed_password)
+        {
+            if(password_verify($password, $hashed_password))
+            {
+                return true;
             }
+            else
+            {
+                return false;
+            }
+        }
+
+        public function ajouterUtilisateur($conn, $mail, $hash, $nom, $prenom)
+        {
+            $req = $conn->query("INSERT INTO utilisateur (mail, mdp, nom, prenom) VALUES ('" . $mail . "', '" . $hash . "', '" . $nom . "', '" . $prenom . "');");
+        }
+        public function hashPassword($password) 
+        {
+            $options = [
+                'memory_cost' => 1<<17, // 128 Mb
+                'time_cost'   => 4,
+                'threads'     => 3,
+            ];
+            $hash = password_hash($password, PASSWORD_ARGON2I, $options);
+            return $hash;
         }
 
         public function affichageTypeRessources($conn)
