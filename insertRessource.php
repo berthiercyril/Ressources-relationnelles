@@ -1,6 +1,7 @@
 <?php
-    include('manipulationBDD.php');
     session_start();
+    include('manipulationBDD.php');
+    include('config.php');
     echo "Ca bloque 1";
     var_dump($_POST['titre'], $_POST['description'], $_POST['categories'], $_POST['ressources'], $_POST['relations'], $_POST['fileselect']);
     // Si tous les champs sont rentrés
