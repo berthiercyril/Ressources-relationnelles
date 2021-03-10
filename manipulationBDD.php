@@ -47,18 +47,7 @@
                 die($e->getMessage());
             }
             
-            // Chaque titre est cliquable et redirige vers sa ressource
-            echo '<div class="list-group">';
-            while($donnee = $requete->fetch())
-            {
-                echo '<div class="list-group-item list-group-item-action">';
-                    echo '<a href="affichage_ressource.php?ressource=' . $donnee['idRessource'] . '" >' . $donnee['titre'] . '</a></br>';
-                    echo "</br> le " . $donnee['date_ajout_fr'] . " </br>";
-                    //echo "______________________________________________________________</br></br>";
-                echo '</div>';
-            }
-            echo '</div>';
-
+            return $requete;
             $requete->closeCursor();
         }
 
@@ -72,18 +61,8 @@
                 catch(PDOException $e){
                     die($e->getMessage());
                 }
-                
-                // Chaque titre est cliquable et redirige vers sa ressource
-                echo '<div class="list-group">';
-                while($donnee = $requete->fetch())
-                {
-                    echo '<div class="list-group-item list-group-item-action">';
-                        echo '<a href="affichage_ressource.php?ressource=' . $donnee['idRessource'] . '" >' . $donnee['titre'] . '</a></br>';
-                        echo "</br> le " . $donnee['date_ajout_fr'] . " </br>";
-                        //echo "______________________________________________________________</br></br>";
-                    echo '</div>';
-                }
-                echo '</div>';
+
+                return $requete;
                 $requete->closeCursor();
 
         }
