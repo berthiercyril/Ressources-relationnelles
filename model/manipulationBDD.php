@@ -16,7 +16,7 @@
         public function ajouterDonneesImg($var_titre, $var_date_ajout, $var_chemin, $var_description, $var_categories, $var_ressources, $var_relations, $conn)
         {
             $return = "";
-            //$var_chemin = '../'.$var_chemin;
+            var_dump($_SESSION['idUser']);
             $requete_insert =  "INSERT INTO ressource (titre, description, date, cheminImage, idUser, id_typeCategorie, id_typeRessource, id_typeRelation)
             VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_chemin . "', '".$_SESSION['idUser']."', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "');";
 
@@ -94,7 +94,7 @@
         
         public function verificationLogin($conn, $mail, $password)
         {
-            $req = $conn->query("SELECT id_user, mdp FROM utilisateur WHERE mail = '$mail'");
+            $req = $conn->query("SELECT id_user, mdp, nom, prenom FROM utilisateur WHERE mail = '$mail'");
                 //$req = $conn->query("SELECT COUNT(id_user) AS countIdUser, id_user FROM utilisateur WHERE mail = '" . $username . "' AND mdp = '" . $password ."' ");
             $res = $req->fetch();
             //print_r($res);
@@ -104,7 +104,10 @@
             {
                 $_SESSION['username'] = $mail;
                 $_SESSION['idUser'] = $res['id_user'];
+                $_SESSION['Nom'] = $res['nom'];
+                $_SESSION['Prenom'] = $res['prenom'];
                 header('Location: ../view/index.php');
+                
             }else
             {
                 header('Location: ../view/login.php?erreur=1'); // utilisateur ou mdp incorrect
@@ -166,6 +169,19 @@
 
             $sql = $conn->query("SELECT lib_relation, id_typeRelation FROM  type_relations ");   
             return $sql;
+        }
+
+        public function affichageNombreRessources($conn)
+        {
+            //$sql = $conn->query('SELECT count(idRessource) FROM ressource WHERE idUser= '.$_SESSION['idUser'].'');
+            try{
+                $sql = $conn->query('SELECT count(idRessource) FROM ressource WHERE idUser= '.$_SESSION['idUser'].'');
+                }
+                catch(PDOException $e){
+                    die($e->getMessage());
+                }
+                $count = $sql->fetchColumn();
+                return $count;
         }
 
 

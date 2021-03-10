@@ -273,3 +273,21 @@ form{
 {
     padding-left: 30%;
 }
+
+.modification_profil
+{
+    margin-left: 20%;
+    margin-top: 10%;
+}
+.modification_profil a
+{
+    border: solid 0px;
+    background-color: #5db075;
+    color: white;
+}
+
+.modification_profil a:hover
+{
+    background-color: #46a060;
+    color: white;
+}
