@@ -203,11 +203,9 @@ form{
 .test_com form{
     margin-right: 40%;
 }
-<<<<<<< HEAD
 .list-group-item+.list-group-item {
     border-top-width: 3px;
 }
-=======
 
 .commentaires
 {
@@ -241,4 +239,3 @@ form{
     margin-bottom: 15px;
 
 }
->>>>>>> 432802b2ef6f401a73254bf9c212d8f4200d9a9b
