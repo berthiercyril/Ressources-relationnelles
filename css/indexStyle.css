@@ -75,7 +75,9 @@ input[type=submit]{
     padding: 14px 20px;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 50%;
+    display: block;
+    margin : auto;
     font-weight: bolder;
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -193,13 +195,13 @@ form{
     border:3px solid #5db075;
 }
 
-.contenu_ressource{
+/*.contenu_ressource{
     /*margin-left: 2%;*/
     /*padding-right: 2%;*/
-}
+/*}
 .contenu_ressource p{
     /*text-align: justify;*/
-}
+/*}*/
 .test_com form{
     margin-right: 40%;
 }
@@ -217,14 +219,41 @@ form{
 {
     margin: auto;
     background-color: rgb(255, 255, 255);
-    width: 50%;
+    width: 70%;
     padding: 5%;
     border-radius: 20px;
     border: 3px solid #5db075;
     margin-bottom: 40px;
 }
 
-.titreRessource
+.contenu_ressource #date
+{
+    color: #5db075;
+    font-size: 16px;
+    text-align: left;
+}
+
+.contenu_ressource a
+{
+    background-color: #5db075;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    font-weight: bolder;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 20px;
+}
+
+.contenu_ressource a:hover
+{
+    background-color: #46a060;
+    color: white;
+}
+
+.titre
 {
     text-align: center;
     margin-bottom: 40px;
@@ -234,8 +263,13 @@ form{
 .solid
 {
     border-bottom: 1px solid #5db075;
-    width: 50%;
+    width: 42%;
     margin: auto;
     margin-bottom: 15px;
 
+}
+
+.div-img
+{
+    padding-left: 30%;
 }
