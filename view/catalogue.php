@@ -37,9 +37,10 @@
                 
             ?>
         </div>
-            </br><h1>Catalogue</h1></br></br>
-        
-
+            </br>
+            <h1>Catalogue</h1>
+            </br>
+            </br>
         <?php
             include('../model/manipulationBDD.php');
             $mAffiche= new manipulationBDD();
