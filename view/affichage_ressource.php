@@ -53,7 +53,8 @@
             $requete->execute(array($_GET['ressource']));
             $donnees = $requete->fetch();
 
-            $size = getimagesize($_SESSION['nom_image']);
+            $size = getimagesize($donnees['cheminImage']);
+
             $height = $size[1] / ($size[0] / 450);
             ?>
             <div class="contenu_ressource">
