@@ -39,49 +39,44 @@
             <form action="../insertRessource.php" method="POST" enctype="multipart/form-data">
                 <h1>Création</h1>
                 <div>
-                    <input type="text" name="titre" id="titre" placeholder="Titre">
+                    <input type="text" name="titre" id="titre" placeholder="Titre" required>
                 </div>
                 <div>
-                    <textarea id="description" name="description" placeholder="Ecrivez votre texte ici" rows="50" cols="45"></textarea>
+                    <textarea id="description" name="description" placeholder="Ecrivez votre texte ici" rows="50" cols="45" required></textarea>
                 </div>
                 <div>
                     <input type="file" id="fileselect" name="fileselect">
                 </div>
                 <div>
-                <?php
+                    <?php
                     $typeSelect = new manipulationBDD;
-                    //$type = 'ressources';
-                    //$lib = 'ressource';
+
                     $res = $typeSelect->affichageTypeCategories($conn);
-                ?>
-                    <select name="categories" id="select">
+                    ?>
+                    <select name="categories" id="selectCategories" class="select" required>
                         <option value="">--Choisissez une catégorie--</option>
                         <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) : ?>
-                        <option value=""> <?php echo htmlspecialchars($row['lib_categorie']); ?></option>
+                        <option value="<?php echo htmlspecialchars($row['id_typeCategorie']); ?>"> <?php echo htmlspecialchars($row['lib_categorie']); ?></option>
                         <?php endwhile; ?>
                     </select><br>
                     <?php
-                    //$typeSelect = new manipulationBDD;
-                    //$type = 'ressources';
-                    //$lib = 'ressource';
+
                     $res = $typeSelect->affichageTypeRessources($conn);
                     ?>
-                    <select name="ressources" id="select">
+                    <select name="ressources" id="selectRessources" class="select" required>
                         <option value="">--Choisissez une ressource--</option>
                         <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) : ?>
-                        <option value=""> <?php echo htmlspecialchars($row['lib_ressource']); ?></option>
+                        <option value="<?php echo htmlspecialchars($row['id_typeRessource']); ?>"> <?php echo htmlspecialchars($row['lib_ressource']); ?></option>
                         <?php endwhile; ?>
                     </select><br>
                     <?php
-                    //$typeSelect = new manipulationBDD;
-                    //$type = 'ressources';
-                    //$lib = 'ressource';
+
                     $res = $typeSelect->affichageTypeRelations($conn);
                     ?>
-                    <select name="relations" id="select">
+                    <select name="relations" id="selectRelations" class="select" required>
                         <option value="">--Choisissez une relation--</option>
                         <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) : ?>
-                        <option value=""> <?php echo htmlspecialchars($row['lib_relation']); ?></option>
+                        <option value="<?php echo htmlspecialchars($row['id_typeRelation']); ?>"><?php echo htmlspecialchars($row['lib_relation']); ?></option>
                         <?php endwhile; ?>
                     </select>
                 </div>

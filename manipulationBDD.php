@@ -16,8 +16,9 @@
         public function ajouterDonneesImg($var_titre, $var_date_ajout, $var_chemin, $var_description, $var_categories, $var_ressources, $var_relations, $conn)
         {
             $return = "";
-            $requete_insert =  "INSERT INTO ressource (titre, description, date, typeCategorie, typeRessource, typeRelation, cheminImage)
-            VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "', '" . $var_chemin . "');";
+            $var_chemin = '../'.$var_chemin;
+            $requete_insert =  "INSERT INTO ressource (titre, description, date, cheminImage, idUser, id_typeCategorie, id_typeRessource, id_typeRelation)
+            VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_chemin . "', '".$_SESSION['idUser']."', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "');";
 
             $return = $return . "</br> La requete ici : " . $requete_insert . "</br>";
             $return = $return . $conn->exec($requete_insert);
@@ -26,7 +27,9 @@
         public function ajouterDonnees($var_titre, $var_date_ajout, $var_description, $var_categories, $var_ressources, $var_relations, $conn)
         {
             $return = "";
-            $requete_insert =  "INSERT INTO ressource (titre, description, date, typeCategorie, typeRessource, typeRelation, idUser)
+
+            
+            $requete_insert =  "INSERT INTO ressource (titre, description, date, id_typeCategorie, id_typeRessource, id_typeRelation, idUser)
             VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "', '".$_SESSION['idUser']."');";
 
             $return = $return . "</br> La requete ici : " . $requete_insert . "</br>";
@@ -171,21 +174,21 @@
         public function affichageTypeRessources($conn)
         {
 
-            $sql = $conn->query("SELECT lib_ressource FROM  type_ressources ");   
+            $sql = $conn->query("SELECT lib_ressource, id_typeRessource FROM  type_ressources ");   
             return $sql;
         }
 
         public function affichageTypeCategories($conn)
         {
 
-            $sql = $conn->query("SELECT lib_categorie FROM  type_categories ");   
+            $sql = $conn->query("SELECT lib_categorie, id_typeCategorie FROM  type_categories ");   
             return $sql;
         }
 
         public function affichageTypeRelations($conn)
         {
 
-            $sql = $conn->query("SELECT lib_relation FROM  type_relations ");   
+            $sql = $conn->query("SELECT lib_relation, id_typeRelation FROM  type_relations ");   
             return $sql;
         }
 
