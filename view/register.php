@@ -24,7 +24,7 @@
         </div>
 
         <div id="container">
-            <form action="../ajoutUtilisateur.php" method="POST">
+            <form action="../controller/ajoutUtilisateur.php" method="POST">
                 <h1>Inscription</h1>
 
                 <div>

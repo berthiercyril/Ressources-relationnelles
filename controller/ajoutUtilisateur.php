@@ -1,6 +1,6 @@
 <?php
     include('config.php');
-    include('manipulationBDD.php');
+    include('../model/manipulationBDD.php');
     
     if(isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['nom']) && isset($_POST['prenom']))
     {
@@ -31,7 +31,7 @@
             }
             else
             {
-                header('Location: view/login.php?succes=1'); // utilisateur ajouté
+                header('Location: ../view/login.php?succes=1'); // utilisateur ajouté
             }
         }
     }

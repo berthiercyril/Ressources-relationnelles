@@ -25,7 +25,7 @@
                     echo '<a href="creation.php">Créer une ressource</a>';
                     
                     //echo '<a class="connexion" href="../deconnexion.php">Déconnexion</a>';
-                    echo '<a class="deconnexion" href="../deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
+                    echo '<a class="deconnexion" href="../controller/deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
                     echo '<a class="connexion" href="profil.php">Mon profil</a>';
                 }
                 else // Le visiteur n'est pas connecté
@@ -39,7 +39,7 @@
             </br><h1>Catalogue</h1></br></br>
 
         <?php
-            include('../manipulationBDD.php');
+            include('../model/manipulationBDD.php');
             $AfficheMesRessources= new manipulationBDD();
             $donnee = $AfficheMesRessources->afficheMesRessources($conn);
             while($row = $donnee->fetch(PDO::FETCH_ASSOC)) :

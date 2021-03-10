@@ -1,5 +1,5 @@
 <?php
-    include("config.php");
+    include("../config.php");
     class manipulationBDD
     {
         public function Connexion($conn)
@@ -16,8 +16,7 @@
         public function ajouterDonneesImg($var_titre, $var_date_ajout, $var_chemin, $var_description, $var_categories, $var_ressources, $var_relations, $conn)
         {
             $return = "";
-            $var_chemin = '../'.$var_chemin;
-            var_dump($_SESSION['idUser']);
+            //var_dump($_SESSION['idUser']);
             $requete_insert =  "INSERT INTO ressource (titre, description, date, cheminImage, idUser, id_typeCategorie, id_typeRessource, id_typeRelation)
             VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_chemin . "', '".$_SESSION['idUser']."', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "');";
 
@@ -107,11 +106,11 @@
                 $_SESSION['idUser'] = $res['id_user'];
                 $_SESSION['Nom'] = $res['nom'];
                 $_SESSION['Prenom'] = $res['prenom'];
+                header('Location: ../view/index.php');
                 
-                header('Location: view/index.php');
             }else
             {
-                header('Location: view/login.php?erreur=1'); // utilisateur ou mdp incorrect
+                header('Location: ../view/login.php?erreur=1'); // utilisateur ou mdp incorrect
             }
             /*if($res['countIdUser'] > 0)
             {

@@ -1,7 +1,7 @@
 <?php
     session_start();
     include("../config.php");
-    include("../manipulationBDD.php");
+    include("../model/manipulationBDD.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +22,8 @@
                 if (!empty($_SESSION['username'])) // Le visiteur est connecté
                 {
                     echo '<a href="mesRessources.php">Mon Catalogue</a>';
+                    echo '<a class="deconnexion" href="../controller/deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
                     
-                    echo '<a class="deconnexion" href="../deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
                     echo '<a class="connexion" href="profil.php">Mon profil</a>';
                 }
                 else // Le visiteur n'est pas connecté
@@ -38,7 +38,7 @@
         </div>
 
         <div id="container">
-            <form action="../insertRessource.php" method="POST" enctype="multipart/form-data">
+            <form action="../controller/insertRessource.php" method="POST" enctype="multipart/form-data">
                 <h1>Création</h1>
                 <div>
                     <input type="text" name="titre" id="titre" placeholder="Titre" required>
