@@ -2,30 +2,30 @@
     session_start();
     include('manipulationBDD.php');
     include('config.php');
-    echo "Ca bloque 1";
-    var_dump($_POST['titre'], $_POST['description'], $_POST['categories'], $_POST['ressources'], $_POST['relations'], $_POST['fileselect']);
+    //echo "Ca bloque 1";
+    //var_dump($_FILES['fileselect']);
     // Si tous les champs sont rentrés
-    if(isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['categories']) && isset($_POST['ressources']) && isset($_POST['relations']) && isset($_POST['fileselect']))
+    if(isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['categories']) && isset($_POST['ressources']) && isset($_POST['relations']) && isset($_FILES['fileselect']))
     {
         $insertionImg = new manipulationBDD();
-        $insertionIMG->Connexion();
+        $insertionImg->Connexion($conn);
         echo "Ca bloque 2";
         $titre = $_POST['titre'];
         $description = $_POST['description'];
         $categorie = $_POST['categories'];
         $ressources = $_POST['ressources'];
         $relations = $_POST['relations'];
-        //$image = $_POST['fileselect'];
+        $image = $_FILES['fileselect'];
 
         $date = date("YmdHis");
 
-        if($titre !== "" && $description !== "" && $categorie !== "" && $ressources !== "" && $relations !== "" && $_FILES !== "")
+        if($titre !== "" && $description !== "" && $categorie !== "" && $ressources !== "" && $relations !== "" && $image !== "")
         {
-            echo var_dump($_FILES);
+            //echo var_dump($_FILES);
             $repertoireDestination = 'images/'.$date.basename($_FILES['fileselect']['name']);
-            $_SESSION['nom_image'] = basename($_FILES['fileselect']['name']);
+            $_SESSION['nom_image'] = '../'.$repertoireDestination;
             
-            if(move_uploaded_file($_FILES['fileselect']['name'], $repertoireDestination))
+            if(move_uploaded_file($_FILES['fileselect']['tmp_name'], $repertoireDestination))
             {
                 echo "Le fichier temporaire " . $_FILES['fileselect']['name'] . " a été déplacé vers " . $repertoireDestination . ".</br>";
             }
@@ -38,7 +38,7 @@
             if($insertionImg->ajouterDonneesImg($titre, $date, $repertoireDestination, $description, $categorie, $ressources, $relations, $conn))//Ajouter $conn
             {
                 echo "Ajout";
-                                //header('Location:resultatInsertionImg.php');
+                                header('Location: view/mesRessources.php');
             }
             else
             {
@@ -78,7 +78,6 @@
         $ressources = $_POST['ressources'];
         $relations = $_POST['relations'];
         $date = date("YmdHis");
-
         if($titre !== "" && $description !== "" && $categorie !== "" && $ressources !== "" && $relations !== "")
         {
             echo "On va ajouter une ressource sans l'image</br>";

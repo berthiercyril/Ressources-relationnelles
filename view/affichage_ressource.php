@@ -47,19 +47,20 @@
             }
 
             // Execution de la requete pour afficher la ressource sélectionnée
-            $requete = $conn->prepare('SELECT idRessource, titre, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date_ajout_fr, description, typeCategorie, typeRessource, typeRelation, cheminImage
-                                    FROM ressource WHERE idRessource = ?');
+            $requete = $conn->prepare('SELECT idRessource, titre, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date_ajout_fr, description, lib_categorie, lib_relation, lib_ressource, cheminImage, idUser 
+            FROM ressource, type_categories, type_relations, type_ressources WHERE type_categories.id_typeCategorie=ressource.id_typecategorie AND type_relations.id_typeRelation=ressource.id_typeRelation
+             AND type_ressources.id_typeRessource=ressource.id_typeRessource AND idRessource = ?');
             $requete->execute(array($_GET['ressource']));
             $donnees = $requete->fetch();
 
-            $size = getimagesize($donnees['cheminImage']);
+            $size = getimagesize($_SESSION['nom_image']);
             $height = $size[1] / ($size[0] / 450);
             ?>
             <div class="contenu_ressource">
                 <h2 class="titre">Titre : <?php echo htmlspecialchars($donnees['titre']);?> </h2></br>
-                <h3>Type catégorie : <?php echo htmlspecialchars($donnees['typeCategorie']);?></h3></br>
-                <h3>Type ressource : <?php echo htmlspecialchars($donnees['typeRessource']);?></h3></br>
-                <h3>Type relation : <?php echo htmlspecialchars_decode($donnees['typeRelation']);?></h3></br><hr class="solid">
+                <h3>Type catégorie : <?php echo htmlspecialchars($donnees['lib_categorie']);?></h3></br>
+                <h3>Type ressource : <?php echo htmlspecialchars($donnees['lib_ressource']);?></h3></br>
+                <h3>Type relation : <?php echo htmlspecialchars_decode($donnees['lib_relation']);?></h3></br><hr class="solid">
                 <h3> Contenu : <br><br></h3> <p><?php echo nl2br(htmlspecialchars($donnees['description']));?></p></br>
                 <div class="div-img"><img src="<?php echo $donnees['cheminImage']?>" class="img-fluid" width='450' height='<?php echo $height?>'></div> <!--/!\ Chemin à changer/!\-->
                 <br><h3 id="date">Publiée le : <?php echo htmlspecialchars($donnees['date_ajout_fr']);?></h3>
