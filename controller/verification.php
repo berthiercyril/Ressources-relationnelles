@@ -1,6 +1,6 @@
 <?php
     include('config.php');
-    include('manipulationBDD.php');
+    include('../model/manipulationBDD.php');
     session_start();
     
     if(isset($_POST['username']) && isset($_POST['password']))
@@ -24,12 +24,12 @@
         }
         else
         {
-            header('Location: view/login.php?erreur=2'); // utilisateur ou mdp vide
+            header('Location: ../view/login.php?erreur=2'); // utilisateur ou mdp vide
         }
     }
     else
     {
-        header('Location: view/login.php');
+        header('Location: ../view/login.php');
         //header('Location: www.google.com');
     }
 ?>

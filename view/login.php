@@ -27,7 +27,7 @@
         </div>
 
         <div id="container">
-            <form action="../verification.php" method="POST">
+            <form action="../controller/verification.php" method="POST">
                 <h1>Connexion</h1>
                 <div>
                     <input type="email" placeholder="Email" name="username" id="email" required>

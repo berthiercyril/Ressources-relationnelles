@@ -24,7 +24,7 @@
                     echo '<a href="mesRessources.php">Mon Catalogue</a>';
                     echo '<a href="creation.php">Créer une ressource</a>';
                     //echo '<a class="connexion" href="../deconnexion.php">Déconnexion</a>';
-                    echo '<a class="deconnexion" href="../deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
+                    echo '<a class="deconnexion" href="../controller/deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
                 }
                 else // Le visiteur n'est pas connecté
                 {
@@ -39,7 +39,7 @@
         
 
         <?php
-            include('../manipulationBDD.php');
+            include('../model/manipulationBDD.php');
             $mAffiche= new manipulationBDD();
 
             //echo "<h1>CATALOGUE KEVIN</h1></br></br>";

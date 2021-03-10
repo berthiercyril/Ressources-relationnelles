@@ -24,7 +24,7 @@
                     echo '<a href="mesRessources.php">Mon Catalogue</a>';
                     echo '<a href="creation.php">Créer une ressource</a>';
                     //echo '<a class="connexion" href="../deconnexion.php">Déconnexion</a>';
-                    echo '<a class="deconnexion" href="../deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
+                    echo '<a class="deconnexion" href="../controller/deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
                 }
                 else // Le visiteur n'est pas connecté
                 {
@@ -37,7 +37,7 @@
         </div>
         <br><br>
         <?php
-        include('../manipulationBDD.php');
+        include('../model/manipulationBDD.php');
             try{
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 //echo "Connexion ok. </br>";
@@ -81,7 +81,7 @@
         
         <div class="commentaires">
             <h2 class="titre">Commentaires</h2>
-            <form action="<?php echo' ../ajoutCommentaire.php?ressource=' . $_GET["ressource"] . ''?>" method="POST" > <!-- on passe l'id ressource en url -->
+            <form action="<?php echo' ../controller/ajoutCommentaire.php?ressource=' . $_GET["ressource"] . ''?>" method="POST" > <!-- on passe l'id ressource en url -->
                 <input type="text" class="form-control" name="auteur" id="auteur" placeholder="Nom"><br>
                 <textarea class="form-control" id="commentaire" name="commentaire" placeholder="Ecrivez votre texte ici" rows="3" cols="60"></textarea><br>
                 <input type="submit" id="submit" value="Envoyer">

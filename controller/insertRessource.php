@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include('manipulationBDD.php');
+    include('../model/manipulationBDD.php');
     include('config.php');
     //echo "Ca bloque 1";
     //var_dump($_FILES['fileselect']);
@@ -22,7 +22,7 @@
         if($titre !== "" && $description !== "" && $categorie !== "" && $ressources !== "" && $relations !== "" && $image !== "")
         {
             //echo var_dump($_FILES);
-            $repertoireDestination = 'images/'.$date.basename($_FILES['fileselect']['name']);
+            $repertoireDestination = '../images/'.$date.basename($_FILES['fileselect']['name']);
             $_SESSION['nom_image'] = '../'.$repertoireDestination;
             
             if(move_uploaded_file($_FILES['fileselect']['tmp_name'], $repertoireDestination))
@@ -38,7 +38,7 @@
             if($insertionImg->ajouterDonneesImg($titre, $date, $repertoireDestination, $description, $categorie, $ressources, $relations, $conn))//Ajouter $conn
             {
                 echo "Ajout";
-                                header('Location: view/mesRessources.php');
+                                header('Location: ../view/mesRessources.php');
             }
             else
             {
