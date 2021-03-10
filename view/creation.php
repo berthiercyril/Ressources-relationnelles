@@ -22,7 +22,9 @@
                 if (!empty($_SESSION['username'])) // Le visiteur est connecté
                 {
                     echo '<a href="mesRessources.php">Mon Catalogue</a>';
+                    
                     echo '<a class="deconnexion" href="../deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
+                    echo '<a class="connexion" href="profil.php">Mon profil</a>';
                 }
                 else // Le visiteur n'est pas connecté
                 {

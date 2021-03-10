@@ -17,6 +17,7 @@
         {
             $return = "";
             $var_chemin = '../'.$var_chemin;
+            var_dump($_SESSION['idUser']);
             $requete_insert =  "INSERT INTO ressource (titre, description, date, cheminImage, idUser, id_typeCategorie, id_typeRessource, id_typeRelation)
             VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_chemin . "', '".$_SESSION['idUser']."', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "');";
 
@@ -201,6 +202,8 @@
                 catch(PDOException $e){
                     die($e->getMessage());
                 }
+                $count = $sql->fetchColumn();
+                return $count;
         }
 
 
