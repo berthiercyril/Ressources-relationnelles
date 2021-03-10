@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include('../manipulationBDD.php');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -21,14 +22,14 @@
         <![endif]-->
         
         <div class="topnav">
-            <a class="active" href="index.php">Accueil</a>
+            <a href="index.php">Accueil</a>
             <a href="catalogue.php">Catalogue</a>
             <?php
                 if (!empty($_SESSION['username'])) // Le visiteur est connecté
                 {
                     echo '<a href="mesRessources.php">Mon Catalogue</a>';
                     echo '<a href="creation.php">Créer une ressource</a>';
-                    echo '<a href="profil.php">Mon profil</a>';
+                    echo '<a class="active" href="profil.php">Mon profil</a>';
                     echo '<a class="deconnexion" href="../deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
                 }
                 else // Le visiteur n'est pas connecté
@@ -41,11 +42,20 @@
             
         </div>
         <br>
-        <h1>Ressources Relationnelles</h1>
+        <?php 
+        $PROFIL = new manipulationBDD();
+        $nbRessources = $PROFIL->affichageNombreRessources($conn);
+        echo "il y a : ". $nbRessources. " ressources";
         
-        <div id="logo" >
-            <img src="../images/Logo-removebg.png">
-        </div>
+        ?>
+        <h1>Mon profil</h1>
+        
+        <h2>Prénom : <?php echo $_SESSION['Prenom']; ?></h2>
+        <h2>Nom : <?php echo $_SESSION['Nom']; ?></h2>
+        <h2>Mail : <?php echo $_SESSION['username']; ?></h2>
+
+        <h2>Nombre de ressources créées : <?php echo $nbRessources; ?></h2>
+        
         
         <script src="" async defer></script>
 

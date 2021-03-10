@@ -112,7 +112,7 @@
         
         public function verificationLogin($conn, $mail, $password)
         {
-            $req = $conn->query("SELECT id_user, mdp FROM utilisateur WHERE mail = '$mail'");
+            $req = $conn->query("SELECT id_user, mdp, nom, prenom FROM utilisateur WHERE mail = '$mail'");
                 //$req = $conn->query("SELECT COUNT(id_user) AS countIdUser, id_user FROM utilisateur WHERE mail = '" . $username . "' AND mdp = '" . $password ."' ");
             $res = $req->fetch();
             //print_r($res);
@@ -122,6 +122,9 @@
             {
                 $_SESSION['username'] = $mail;
                 $_SESSION['idUser'] = $res['id_user'];
+                $_SESSION['Nom'] = $res['nom'];
+                $_SESSION['Prenom'] = $res['prenom'];
+                
                 header('Location: view/index.php');
             }else
             {
@@ -184,6 +187,17 @@
 
             $sql = $conn->query("SELECT lib_relation FROM  type_relations ");   
             return $sql;
+        }
+
+        public function affichageNombreRessources($conn)
+        {
+            //$sql = $conn->query('SELECT count(idRessource) FROM ressource WHERE idUser= '.$_SESSION['idUser'].'');
+            try{
+                $sql = $conn->query('SELECT count(idRessource) FROM ressource WHERE idUser= '.$_SESSION['idUser'].'');
+                }
+                catch(PDOException $e){
+                    die($e->getMessage());
+                }
         }
 
 
