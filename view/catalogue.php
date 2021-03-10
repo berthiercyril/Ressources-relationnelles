@@ -45,9 +45,16 @@
             $mAffiche= new manipulationBDD();
 
             //echo "<h1>CATALOGUE KEVIN</h1></br></br>";
-            $mAffiche->afficheDonnees($conn);
+            $donnee = $mAffiche->afficheDonnees($conn);
+            while($row = $donnee->fetch(PDO::FETCH_ASSOC)) :
         ?>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action">
+                    <a href="affichage_ressource.php?ressource=<?php echo htmlspecialchars($row['idRessource']); ?>"> <?php echo htmlspecialchars($row['titre']); ?></a></br>
+                    </br> le <?php echo htmlspecialchars($row['date_ajout_fr']);  ?> </br>
+                </div>
+            </div>
+            <?php endwhile; ?>
     </body>
 
 </html>
