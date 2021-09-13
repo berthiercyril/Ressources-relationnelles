@@ -58,7 +58,16 @@
         <div class="modification_profil">
             <a href="editProfil.php" class="btn btn-primary">Modifier mes infos</a>
         </div>
-        
+        <?php 
+        if(isset($_GET['succes']))
+            {
+                $succes = $_GET['succes'];
+                if($succes == 1)
+                {
+                    echo "<p style='color:black'>Vos informations ont bien été mise à jour</p>";
+                }
+            }
+        ?>
         
         
 

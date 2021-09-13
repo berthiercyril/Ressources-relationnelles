@@ -183,6 +183,15 @@
                 $count = $sql->fetchColumn();
                 return $count;
         }
+        public function modifierUtilisateur($conn, $mail, $nom, $prenom)
+        {
+            try{
+                $req = $conn->query("UPDATE utilisateur SET mail ='" . $mail . "', nom = '" . $nom . "', prenom = '" . $prenom . "' WHERE id_user= '" . $_SESSION['idUser'] . "'  ");
+            }
+            catch(PDOException $e){
+                die($e->getMessage());
+            }
+        }
 
 
     }
