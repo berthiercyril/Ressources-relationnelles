@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include('../manipulationBDD.php');
+    include('../../manipulationBDD.php');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -14,7 +14,7 @@
         <title>Ressources Relationnelles</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/indexStyle.css">
+        <link rel="stylesheet" href="../../css/indexStyle.css">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -28,7 +28,7 @@
                 {
                     echo '<a href="mesRessources.php">Mon Catalogue</a>';
                     echo '<a href="creation.php">Créer une ressource</a>';
-                    echo '<a class="deconnexion" href="../deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
+                    echo '<a class="deconnexion" href="../../deconnexion.php"><img src="../../images/deconnexion.svg" title="imageDeconnexion"></a>';
                     echo '<a class="active connexion" href="profil.php">Mon profil</a>';
                 }
                 else // Le visiteur n'est pas connecté
@@ -40,7 +40,7 @@
         </div>
 
         <div id="container">
-            <form action="../modifieUtilisateur.php" method="POST">
+            <form action="../../modifieUtilisateur.php" method="POST">
                 <h1>Inscription</h1>
 
                 <div>

@@ -13,7 +13,7 @@
         <title>Ressources Relationnelles</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/indexStyle.css">
+        <link rel="stylesheet" href="../../css/indexStyle.css">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -27,7 +27,7 @@
         </div>
 
         <div id="container">
-            <form action="../controller/verification.php" method="POST">
+            <form action="../../controller/verification.php" method="POST">
                 <h1>Connexion</h1>
                 <div>
                     <input type="email" placeholder="Email" name="username" id="email" required>

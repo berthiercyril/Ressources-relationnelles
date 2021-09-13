@@ -10,7 +10,7 @@
         <title>Ressources Relationnelles</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/indexStyle.css">
+        <link rel="stylesheet" href="../../css/indexStyle.css">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -18,16 +18,16 @@
         <![endif]-->
         
         <div class="topnav">
-            <a href="index.php">Accueil</a>
-            <a class="connexion" href="login.php">Connexion</a>
-            <a class="connexion" href="register.php">Inscription</a>
-            <a href="catalogue.php">Catalogue</a>
+            <a href="index.html">Accueil</a>
+            <a href="login.php">Connexion</a>
+            <a href="register.php">Inscription</a>
+            <a href="catalogueKevin.php">Catalogue</a>
         </div>
         <br>
         <h1>Création</h1>
         
         <div id="retour">
-            <p>Votre ressource à bien été ajoutée sans l'image</p> 
+            <p>Votre ressource à bien été ajoutée avec l'image</p> 
         </div>
         
         <script src="" async defer></script>

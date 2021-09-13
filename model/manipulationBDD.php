@@ -1,5 +1,6 @@
 <?php
-    include("../config.php");
+
+    include("config.php");
     class manipulationBDD
     {
         public function Connexion($conn)
@@ -41,7 +42,7 @@
         {
             // Affiche le titre_ressource de l'article ainsi que sa date de création
             try{
-            $requete = $conn->query('SELECT id_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y à %Hh %imin %ss\') AS date_creation_ressource FROM ressources ORDER BY date_creation_ressource DESC;');
+            $requete = $conn->query('SELECT id_ressource, description_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y à %Hh %imin %ss\') AS date_creation_ressource FROM ressources ORDER BY date_creation_ressource DESC;');
             }
             catch(PDOException $e){
                 die($e->getMessage());
@@ -76,14 +77,14 @@
         public function afficherCommentaire($conn)
         {
             // Récupération des commentaires
-            $req = $conn->prepare('SELECT id_utilisateur, commentaire, DATE_FORMAT(date_creation_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_commentaire FROM commentaires WHERE id_ressource = ? ORDER BY date_creation_commentaire DESC');
+            $req = $conn->prepare('SELECT nom, prenom, commentaire, DATE_FORMAT(date_creation_commentaire, \'%d/%m/%Y à %Hh%imin\') AS date_creation_commentaire FROM commentaires, utilisateur WHERE utilisateur.id_utilisateur=commentaires.id_utilisateur AND id_ressource = ? ORDER BY date_creation_commentaire DESC');
             $req->execute(array($_GET['ressource']));
 
             while ($donnees = $req->fetch())
             {
             ?>
             <div class="commentaires">
-            <p><strong><?php echo htmlspecialchars($donnees['id_utilisateur']); ?></strong> le <?php echo $donnees['date_creation_commentaire']; ?></p>
+            <p><strong><?php echo htmlspecialchars($donnees['prenom']. ' ' .$donnees['nom']); ?></strong> le <?php echo $donnees['date_creation_commentaire']; ?></p>
             <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
             </div><hr class="solid">
             <?php 

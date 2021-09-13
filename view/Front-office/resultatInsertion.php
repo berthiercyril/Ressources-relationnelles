@@ -1,6 +1,3 @@
-<?php
-    session_start();
-?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -13,7 +10,7 @@
         <title>Ressources Relationnelles</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/indexStyle.css">
+        <link rel="stylesheet" href="../../css/indexStyle.css">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -21,18 +18,16 @@
         <![endif]-->
         
         <div class="topnav">
-            <a class="active" href="index.php">Accueil</a>
-            <a href="login.php">Connexion</a>
-            <a href="register.php">Inscription</a>
+            <a href="index.php">Accueil</a>
+            <a class="connexion" href="login.php">Connexion</a>
+            <a class="connexion" href="register.php">Inscription</a>
             <a href="catalogue.php">Catalogue</a>
-            <a href="creation.php">Créer une ressource</a>
-            <a href="mesRessources.php">Mon catalogue</a>
         </div>
         <br>
-        <h1>Ressources Relationnelles</h1>
+        <h1>Création</h1>
         
-        <div id="logo">
-            <img src="../images/Logo-removebg.png">
+        <div id="retour">
+            <p>Votre ressource à bien été ajoutée sans l'image</p> 
         </div>
         
         <script src="" async defer></script>

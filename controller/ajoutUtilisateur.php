@@ -31,7 +31,7 @@
             }
             else
             {
-                header('Location: ../view/login.php?succes=1'); // utilisateur ajouté
+                header('Location: ../view/Front-office/login.php?succes=1'); // utilisateur ajouté
             }
         }
     }

@@ -1,7 +1,7 @@
 <?php
     session_start();
     include('../model/manipulationBDD.php');
-    include('config.php');
+    include('../config.php');
     //echo "Ca bloque 1";
     //var_dump($_FILES['fileselect']);
     // Si tous les champs sont rentrés
@@ -35,10 +35,11 @@
             }
 
             echo "On va jouter la ressource avec image</br>";
+            $repertoireDestination = '../'.$repertoireDestination;
             if($insertionImg->ajouterDonneesImg($titre, $date, $repertoireDestination, $description, $categorie, $ressources, $relations, $conn))//Ajouter $conn
             {
                 echo "Ajout";
-                                header('Location: ../view/mesRessources.php');
+                                header('Location: ../view/Front-office/mesRessources.php');
             }
             else
             {

@@ -3,41 +3,44 @@
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Ressources Relationnelles</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <link rel="stylesheet" href="../css/indexStyle.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <link rel="stylesheet" href="../../css/indexStyle.css">
+
     </head>
     <body>
-        <div class="topnav">
-            <a href="index.php">Accueil</a>
-            <a href="catalogue.php">Catalogue</a>
-            <!--<a href="login.php">Connexion</a>
-            <a href="register.php">Inscription</a>-->
-            <?php
-                if (!empty($_SESSION['username'])) // Le visiteur est connecté
-                {
-                    echo '<a href="mesRessources.php">Mon Catalogue</a>';
-                    echo '<a href="creation.php">Créer une ressource</a>';
-                    //echo '<a class="connexion" href="../deconnexion.php">Déconnexion</a>';
-                    echo '<a class="deconnexion" href="../controller/deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
-                }
-                else // Le visiteur n'est pas connecté
-                {
-                    //echo 'vous n\'êtes pas connecté.';
-                    echo '<a class="connexion" href="login.php">Connexion</a>';
-                    echo '<a class="connexion" href="register.php">Inscription</a>';
-                }
-                
-            ?>
-        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Ressources relationnelles</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="BO_index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="BO_liste_ressources.php">liste des ressources</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Validation ressources</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Statistiques</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
         <br><br>
         <?php
-        include('../model/manipulationBDD.php');
+        include('../../model/manipulationBDD.php');
             try{
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 //echo "Connexion ok. </br>";
@@ -65,7 +68,7 @@
                 <h3> Contenu : <br><br></h3> <p><?php echo nl2br(htmlspecialchars($donnees['description_ressource']));?></p></br>
                 <div class="div-img"><img src="<?php echo $donnees['chemin_document']?>" class="img-fluid" width='450' height='<?php echo $height?>'></div> <!--/!\ Chemin à changer/!\-->
                 <br><h3 id="date">Publiée le : <?php echo htmlspecialchars($donnees['date_creation_ressource']);?></h3>
-                <a href="catalogue.php" class="btn btn-primary">Retour au catalogue</a>
+                <a href="BO_liste_ressources.php" class="btn btn-primary">Retour au catalogue</a>
             </div>
 <?php
                 // Affiche le résultat de la requete

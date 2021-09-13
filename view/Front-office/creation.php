@@ -1,7 +1,6 @@
 <?php
     session_start();
-    include("../config.php");
-    include("../model/manipulationBDD.php");
+    include("../../model/manipulationBDD.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +8,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/indexStyle.css">
+        <link rel="stylesheet" href="../../css/indexStyle.css">
     </head>
     <body>
         <div class="topnav">
@@ -22,7 +21,7 @@
                 if (!empty($_SESSION['username'])) // Le visiteur est connecté
                 {
                     echo '<a href="mesRessources.php">Mon Catalogue</a>';
-                    echo '<a class="deconnexion" href="../controller/deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
+                    echo '<a class="deconnexion" href="../../controller/deconnexion.php"><img src="../../images/deconnexion.svg" title="imageDeconnexion"></a>';
                     
                     echo '<a class="connexion" href="profil.php">Mon profil</a>';
                 }
@@ -38,7 +37,7 @@
         </div>
 
         <div id="container">
-            <form action="../controller/insertRessource.php" method="POST" enctype="multipart/form-data">
+            <form action="../../controller/insertRessource.php" method="POST" enctype="multipart/form-data">
                 <h1>Création</h1>
                 <div>
                     <input type="text" name="titre" id="titre" placeholder="Titre" required>

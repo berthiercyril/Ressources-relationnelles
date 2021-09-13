@@ -21,7 +21,7 @@
             }
             else
             {
-                header('Location: view/profil.php?succes=1'); // Données modifiées
+                header('Location: view/Front-office/profil.php?succes=1'); // Données modifiées
             }
         }
     }

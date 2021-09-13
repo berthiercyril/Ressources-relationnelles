@@ -24,12 +24,12 @@
         }
         else
         {
-            header('Location: ../view/login.php?erreur=2'); // utilisateur ou mdp vide
+            header('Location: ../view/Front-office/login.php?erreur=2'); // utilisateur ou mdp vide
         }
     }
     else
     {
-        header('Location: ../view/login.php');
+        header('Location: ../view/Front-office/login.php');
         //header('Location: www.google.com');
     }
 ?>

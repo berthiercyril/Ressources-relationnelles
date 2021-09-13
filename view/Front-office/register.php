@@ -10,7 +10,7 @@
         <title>Ressources Relationnelles</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/indexStyle.css">
+        <link rel="stylesheet" href="../../css/indexStyle.css">
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -24,7 +24,7 @@
         </div>
 
         <div id="container">
-            <form action="../controller/ajoutUtilisateur.php" method="POST">
+            <form action="../../controller/ajoutUtilisateur.php" method="POST">
                 <h1>Inscription</h1>
 
                 <div>

@@ -10,7 +10,7 @@
         <title>Ressources Relationnelles</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/indexStyle.css">
+        <link rel="stylesheet" href="../../css/indexStyle.css">
     </head>
     <body>
 
@@ -24,7 +24,7 @@
                     echo '<a href="mesRessources.php">Mon Catalogue</a>';
                     echo '<a href="creation.php">Créer une ressource</a>';
                     
-                    echo '<a class="deconnexion" href="../controller/deconnexion.php"><img src="../images/deconnexion.svg" title="imageDeconnexion"></a>';
+                    echo '<a class="deconnexion" href="../../controller/deconnexion.php"><img src="../../images/deconnexion.svg" title="imageDeconnexion"></a>';
                     echo '<a class="connexion" href="profil.php">Mon profil</a>';
                 }
                 else // Le visiteur n'est pas connecté
@@ -40,7 +40,7 @@
         <h1>Ressources Relationnelles</h1>
         
         <div id="logo" >
-            <img src="../images/Logo-removebg.png">
+            <img src="../../images/Logo-removebg.png">
         </div>
         
         <script src="" async defer></script>
