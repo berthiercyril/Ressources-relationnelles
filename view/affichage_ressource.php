@@ -47,24 +47,24 @@
             }
 
             // Execution de la requete pour afficher la ressource sélectionnée
-            $requete = $conn->prepare('SELECT idRessource, titre, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date_ajout_fr, description, lib_categorie, lib_relation, lib_ressource, cheminImage, idUser 
-            FROM ressource, type_categories, type_relations, type_ressources WHERE type_categories.id_typeCategorie=ressource.id_typecategorie AND type_relations.id_typeRelation=ressource.id_typeRelation
-             AND type_ressources.id_typeRessource=ressource.id_typeRessource AND idRessource = ?');
+            $requete = $conn->prepare('SELECT id_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y à %Hh %imin %ss\') AS date_creation_ressource, description_ressource, lib_categories, lib_type_relation, lib_type, chemin_document, id_utilisateur 
+            FROM ressources, categories_ressources, type_relation_ressource, type_ressources WHERE categories_ressources.id_categories=ressources.id_categories AND type_relation_ressource.id_relation_ressource=ressources.id_type
+             AND type_ressources.id_type=ressources.id_type AND id_ressource = ?');
             $requete->execute(array($_GET['ressource']));
             $donnees = $requete->fetch();
 
-            $size = getimagesize($donnees['cheminImage']);
+            $size = getimagesize($donnees['chemin_document']);
 
             $height = $size[1] / ($size[0] / 450);
             ?>
             <div class="contenu_ressource">
-                <h2 class="titre">Titre : <?php echo htmlspecialchars($donnees['titre']);?> </h2></br>
-                <h3>Type catégorie : <?php echo htmlspecialchars($donnees['lib_categorie']);?></h3></br>
-                <h3>Type ressource : <?php echo htmlspecialchars($donnees['lib_ressource']);?></h3></br>
-                <h3>Type relation : <?php echo htmlspecialchars_decode($donnees['lib_relation']);?></h3></br><hr class="solid">
-                <h3> Contenu : <br><br></h3> <p><?php echo nl2br(htmlspecialchars($donnees['description']));?></p></br>
-                <div class="div-img"><img src="<?php echo $donnees['cheminImage']?>" class="img-fluid" width='450' height='<?php echo $height?>'></div> <!--/!\ Chemin à changer/!\-->
-                <br><h3 id="date">Publiée le : <?php echo htmlspecialchars($donnees['date_ajout_fr']);?></h3>
+                <h2 class="titre">Titre : <?php echo htmlspecialchars($donnees['titre_ressource']);?> </h2></br>
+                <h3>Type catégorie : <?php echo htmlspecialchars($donnees['lib_categories']);?></h3></br>
+                <h3>Type ressource : <?php echo htmlspecialchars($donnees['lib_type']);?></h3></br>
+                <h3>Type relation : <?php echo htmlspecialchars_decode($donnees['lib_type_relation']);?></h3></br><hr class="solid">
+                <h3> Contenu : <br><br></h3> <p><?php echo nl2br(htmlspecialchars($donnees['description_ressource']));?></p></br>
+                <div class="div-img"><img src="<?php echo $donnees['chemin_document']?>" class="img-fluid" width='450' height='<?php echo $height?>'></div> <!--/!\ Chemin à changer/!\-->
+                <br><h3 id="date">Publiée le : <?php echo htmlspecialchars($donnees['date_creation_ressource']);?></h3>
                 <a href="catalogue.php" class="btn btn-primary">Retour au catalogue</a>
             </div>
 <?php

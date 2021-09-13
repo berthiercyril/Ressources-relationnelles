@@ -51,8 +51,8 @@
         ?>
             <div class="list-group">
                 <div class="list-group-item list-group-item-action">
-                    <a href="affichage_ressource.php?ressource=<?php echo htmlspecialchars($row['idRessource']); ?>"> <?php echo htmlspecialchars($row['titre']); ?></a></br>
-                    </br> le <?php echo htmlspecialchars($row['date_ajout_fr']);  ?> </br>
+                    <a href="affichage_ressource.php?ressource=<?php echo htmlspecialchars($row['id_ressource']); ?>"> <?php echo htmlspecialchars($row['titre_ressource']); ?></a></br>
+                    </br> le <?php echo htmlspecialchars($row['date_creation_ressource']);  ?> </br>
                 </div>
             </div>
             <?php endwhile; ?>

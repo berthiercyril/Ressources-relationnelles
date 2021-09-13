@@ -13,35 +13,35 @@
             }
         }
         // Méthode pour ajouter une ressource avec image dans la BDD
-        public function ajouterDonneesImg($var_titre, $var_date_ajout, $var_chemin, $var_description, $var_categories, $var_ressources, $var_relations, $conn)
+        public function ajouterDonneesImg($var_titre_ressource, $var_date_ajout, $var_chemin, $var_description, $var_categories, $var_ressources, $var_relations, $conn)
         {
             $return = "";
             //gitvar_dump($_SESSION['idUser']);
-            $requete_insert =  "INSERT INTO ressource (titre, description, date, cheminImage, idUser, id_typeCategorie, id_typeRessource, id_typeRelation)
-            VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_chemin . "', '".$_SESSION['idUser']."', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "');";
+            $requete_insert =  "INSERT INTO ressources (titre_ressource, description_ressource, date_creation_ressource, chemin_document, id_utilisateur, id_categories, id_type, id_relation_ressource, id_statut)
+            VALUES ('" . $var_titre_ressource . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_chemin . "', '".$_SESSION['idUser']."', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "', 3);";
 
             $return = $return . "</br> La requete ici : " . $requete_insert . "</br>";
             $return = $return . $conn->exec($requete_insert);
             return $return;
         }
-        public function ajouterDonnees($var_titre, $var_date_ajout, $var_description, $var_categories, $var_ressources, $var_relations, $conn)
+        public function ajouterDonnees($var_titre_ressource, $var_date_ajout, $var_description, $var_categories, $var_ressources, $var_relations, $conn)
         {
             $return = "";
 
             
-            $requete_insert =  "INSERT INTO ressource (titre, description, date, id_typeCategorie, id_typeRessource, id_typeRelation, idUser)
-            VALUES ('" . $var_titre . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "', '".$_SESSION['idUser']."');";
+            $requete_insert =  "INSERT INTO ressources (titre_ressource, description_ressource, date_creation_ressource, id_categories, id_type, id_relation_ressource, id_utilisateur)
+            VALUES ('" . $var_titre_ressource . "', '" . $var_description . "', '" . $var_date_ajout . "', '" . $var_categories . "', '" . $var_ressources . "', '" . $var_relations . "', '".$_SESSION['idUser']."');";
 
             $return = $return . "</br> La requete ici : " . $requete_insert . "</br>";
             $return = $return . $conn->exec($requete_insert);
             return $return;
         }
-        // Méthode pour afficher les titres des resosurces
+        // Méthode pour afficher les titre_ressources des resosurces
         public function afficheDonnees($conn)
         {
-            // Affiche le titre de l'article ainsi que sa date de création
+            // Affiche le titre_ressource de l'article ainsi que sa date de création
             try{
-            $requete = $conn->query('SELECT idRessource, titre, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date_ajout_fr FROM ressource ORDER BY date DESC;');
+            $requete = $conn->query('SELECT id_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y à %Hh %imin %ss\') AS date_creation_ressource FROM ressources ORDER BY date_creation_ressource DESC;');
             }
             catch(PDOException $e){
                 die($e->getMessage());
@@ -54,9 +54,9 @@
         public function afficheMesRessources($conn)
         {
 
-            // Affiche le titre de l'article ainsi que sa date de création
+            // Affiche le titre_ressource de l'article ainsi que sa date de création
             try{
-                $requete = $conn->query('SELECT idRessource, titre, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date_ajout_fr FROM ressource WHERE idUser= '.$_SESSION['idUser'].' ORDER BY date DESC;');
+                $requete = $conn->query('SELECT id_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y à %Hh %imin %ss\') AS date_creation_ressource FROM ressources WHERE id_utilisateur= '.$_SESSION['idUser'].' ORDER BY date_creation_ressource DESC;');
                 }
                 catch(PDOException $e){
                     die($e->getMessage());
@@ -67,23 +67,23 @@
 
         }
 
-        public function ajouterCommentaire($auteur, $commentaire, $idRessource, $conn)
+        public function ajouterCommentaire($auteur, $commentaire, $id_ressource, $conn)
         {
             $dateCommentaire = date('Y-m-d H:i:s');
-            $res = $conn->query("INSERT INTO commentaires (idRessource, auteur, commentaire, dateCommentaire) VALUES ('$idRessource', '".$auteur."', '".$commentaire."', '".$dateCommentaire."')");
+            $res = $conn->query("INSERT INTO commentaires (id_ressource, id_utilisateur, commentaire, date_creation_commentaire) VALUES ('$id_ressource', '".$auteur."', '".$commentaire."', '".$dateCommentaire."')");
         }
 
         public function afficherCommentaire($conn)
         {
             // Récupération des commentaires
-            $req = $conn->prepare('SELECT auteur, commentaire, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM commentaires WHERE idRessource = ? ORDER BY datecommentaire DESC');
+            $req = $conn->prepare('SELECT id_utilisateur, commentaire, DATE_FORMAT(date_creation_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_commentaire FROM commentaires WHERE id_ressource = ? ORDER BY date_creation_commentaire DESC');
             $req->execute(array($_GET['ressource']));
 
             while ($donnees = $req->fetch())
             {
             ?>
             <div class="commentaires">
-            <p><strong><?php echo htmlspecialchars($donnees['auteur']); ?></strong> le <?php echo $donnees['date_commentaire_fr']; ?></p>
+            <p><strong><?php echo htmlspecialchars($donnees['id_utilisateur']); ?></strong> le <?php echo $donnees['date_creation_commentaire']; ?></p>
             <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
             </div><hr class="solid">
             <?php 
@@ -94,7 +94,7 @@
         
         public function verificationLogin($conn, $mail, $password)
         {
-            $req = $conn->query("SELECT id_user, mdp, nom, prenom FROM utilisateur WHERE mail = '$mail'");
+            $req = $conn->query("SELECT id_utilisateur, mdp, nom, prenom FROM utilisateur WHERE mail = '$mail'");
                 //$req = $conn->query("SELECT COUNT(id_user) AS countIdUser, id_user FROM utilisateur WHERE mail = '" . $username . "' AND mdp = '" . $password ."' ");
             $res = $req->fetch();
             //print_r($res);
@@ -103,7 +103,7 @@
             if(password_verify($password, $hashed_password))
             {
                 $_SESSION['username'] = $mail;
-                $_SESSION['idUser'] = $res['id_user'];
+                $_SESSION['idUser'] = $res['id_utilisateur'];
                 $_SESSION['Nom'] = $res['nom'];
                 $_SESSION['Prenom'] = $res['prenom'];
                 header('Location: ../view/index.php');
@@ -137,7 +137,7 @@
 
         public function ajouterUtilisateur($conn, $mail, $hash, $nom, $prenom)
         {
-            $req = $conn->query("INSERT INTO utilisateur (mail, mdp, nom, prenom) VALUES ('" . $mail . "', '" . $hash . "', '" . $nom . "', '" . $prenom . "');");
+            $req = $conn->query("INSERT INTO utilisateur (mail, mdp, nom, prenom, id_type_compte) VALUES ('" . $mail . "', '" . $hash . "', '" . $nom . "', '" . $prenom . "', 4);");
         }
         public function hashPassword($password) 
         {
@@ -153,29 +153,29 @@
         public function affichageTypeRessources($conn)
         {
 
-            $sql = $conn->query("SELECT lib_ressource, id_typeRessource FROM  type_ressources ");   
+            $sql = $conn->query("SELECT lib_type, id_type FROM  type_ressources ");   
             return $sql;
         }
 
         public function affichageTypeCategories($conn)
         {
 
-            $sql = $conn->query("SELECT lib_categorie, id_typeCategorie FROM  type_categories ");   
+            $sql = $conn->query("SELECT lib_categories, id_categories FROM  categories_ressources ");   
             return $sql;
         }
 
         public function affichageTypeRelations($conn)
         {
 
-            $sql = $conn->query("SELECT lib_relation, id_typeRelation FROM  type_relations ");   
+            $sql = $conn->query("SELECT lib_type_relation, id_relation_ressource FROM  type_relation_ressource ");   
             return $sql;
         }
 
         public function affichageNombreRessources($conn)
         {
-            //$sql = $conn->query('SELECT count(idRessource) FROM ressource WHERE idUser= '.$_SESSION['idUser'].'');
+            //$sql = $conn->query('SELECT count(id_ressource) FROM ressource WHERE idUser= '.$_SESSION['idUser'].'');
             try{
-                $sql = $conn->query('SELECT count(idRessource) FROM ressource WHERE idUser= '.$_SESSION['idUser'].'');
+                $sql = $conn->query('SELECT count(id_ressource) FROM ressources WHERE id_utilisateur= '.$_SESSION['idUser'].'');
                 }
                 catch(PDOException $e){
                     die($e->getMessage());
@@ -186,7 +186,7 @@
         public function modifierUtilisateur($conn, $mail, $nom, $prenom)
         {
             try{
-                $req = $conn->query("UPDATE utilisateur SET mail ='" . $mail . "', nom = '" . $nom . "', prenom = '" . $prenom . "' WHERE id_user= '" . $_SESSION['idUser'] . "'  ");
+                $req = $conn->query("UPDATE utilisateur SET mail ='" . $mail . "', nom = '" . $nom . "', prenom = '" . $prenom . "' WHERE id_utilisateur= '" . $_SESSION['idUser'] . "'  ");
             }
             catch(PDOException $e){
                 die($e->getMessage());
