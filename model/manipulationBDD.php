@@ -42,7 +42,7 @@
         {
             // Affiche le titre_ressource de l'article ainsi que sa date de création
             try{
-            $requete = $conn->query('SELECT id_ressource, description_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y à %Hh %imin %ss\') AS date_creation_ressource FROM ressources ORDER BY date_creation_ressource DESC;');
+            $requete = $conn->query('SELECT id_ressource, description_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y\') AS date_creation_ressource FROM ressources ORDER BY date_creation_ressource DESC;');
             }
             catch(PDOException $e){
                 die($e->getMessage());
@@ -57,7 +57,7 @@
 
             // Affiche le titre_ressource de l'article ainsi que sa date de création
             try{
-                $requete = $conn->query('SELECT id_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y à %Hh %imin %ss\') AS date_creation_ressource FROM ressources WHERE id_utilisateur= '.$_SESSION['idUser'].' ORDER BY date_creation_ressource DESC;');
+                $requete = $conn->query('SELECT id_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y\') AS date_creation_ressource FROM ressources WHERE id_utilisateur= '.$_SESSION['idUser'].' ORDER BY date_creation_ressource DESC;');
                 }
                 catch(PDOException $e){
                     die($e->getMessage());
@@ -77,16 +77,17 @@
         public function afficherCommentaire($conn)
         {
             // Récupération des commentaires
-            $req = $conn->prepare('SELECT nom, prenom, commentaire, DATE_FORMAT(date_creation_commentaire, \'%d/%m/%Y à %Hh%imin\') AS date_creation_commentaire FROM commentaires, utilisateur WHERE utilisateur.id_utilisateur=commentaires.id_utilisateur AND id_ressource = ? ORDER BY date_creation_commentaire DESC');
+            $req = $conn->prepare('SELECT nom, prenom, commentaire, DATE_FORMAT(date_creation_commentaire, \'%d/%m/%Y à %H:%i\') AS date_creation_commentaire FROM commentaires, utilisateur WHERE utilisateur.id_utilisateur=commentaires.id_utilisateur AND id_ressource = ? ORDER BY date_creation_commentaire DESC');
             $req->execute(array($_GET['ressource']));
 
             while ($donnees = $req->fetch())
             {
             ?>
-            <div class="commentaires">
+            <!-- <div class="container"> -->
             <p><strong><?php echo htmlspecialchars($donnees['prenom']. ' ' .$donnees['nom']); ?></strong> le <?php echo $donnees['date_creation_commentaire']; ?></p>
             <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
-            </div><hr class="solid">
+            <hr class="solid">
+            <!-- </div> -->
             <?php 
             } // Fin de la boucle des commentaires
             $req->closeCursor();
@@ -107,7 +108,7 @@
                 $_SESSION['idUser'] = $res['id_utilisateur'];
                 $_SESSION['Nom'] = $res['nom'];
                 $_SESSION['Prenom'] = $res['prenom'];
-                header('Location: ../view/index.php');
+                header('Location: ../view/Front-office/index.php');
                 
             }else
             {
@@ -138,7 +139,7 @@
 
         public function ajouterUtilisateur($conn, $mail, $hash, $nom, $prenom)
         {
-            $req = $conn->query("INSERT INTO utilisateur (mail, mdp, nom, prenom, id_type_compte) VALUES ('" . $mail . "', '" . $hash . "', '" . $nom . "', '" . $prenom . "', 4);");
+            $req = $conn->query("INSERT INTO utilisateur (mail, mdp, nom, prenom, id_type_compte, verifie) VALUES ('" . $mail . "', '" . $hash . "', '" . $nom . "', '" . $prenom . "', 4, 0);");
         }
         public function hashPassword($password) 
         {

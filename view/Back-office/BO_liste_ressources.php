@@ -9,34 +9,11 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Ressources relationnelles</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="BO_index.php">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="BO_liste_ressources.php">liste des ressources</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Validation ressources</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Statistiques</a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-        </nav>
-        <h1 class="text-center">Gestion des Ressources</h1>
+        <?php include('navbar.php')?>
+        <h1 class="text-center">Gestion des Ressources</h1><br>
 
         <?php
-            include('../../config.php');
+            include('../../model/config.php');
             include('../../model/manipulationBDD.php');
             $mAffiche= new manipulationBDD();
 
@@ -45,17 +22,24 @@
             while($row = $donnee->fetch(PDO::FETCH_ASSOC)) :
         ?>
        <div class="card text-center container">
-            <div class="card-header">
-            <?php echo htmlspecialchars($row['titre_ressource']); ?>
+            <div>
+                <h4><?php echo htmlspecialchars($row['titre_ressource']); ?></h4>
             </div>
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
+                <h5 class="card-title"></h5>
                 <p class="card-text"><?php echo htmlspecialchars($row['description_ressource']); ?></p>
+                <a href="#" class="btn btn-outline-primary">Voir plus</a>
             </div>
             
-            <div class="card-footer">
-                <a href="BO_affichage_ressource.php?ressource=<?php echo htmlspecialchars($row['id_ressource']); ?>" class="btn btn-primary">Voir plus</a>
-                <div class="text-end"><?php echo htmlspecialchars($row['date_creation_ressource']); ?></div>
+            <div class="card-footer bg-light text-dark row">
+                <div class="col-6 text-start">
+                <a href="#" class="btn btn-primary">Suspendre</a>
+                <a href="BO_modifier_ressource.php?ressource=<?php echo htmlspecialchars($row['id_ressource']); ?>" class="btn btn-warning">Modifier</a>
+                <a href="#" class="btn btn-danger">Supprimer</a>
+                </div>
+                <div class="col-6 text-end">
+                    <label class="text-start"> <?php echo htmlspecialchars($row['date_creation_ressource']); ?></label>
+                </div>
             </div>
             
         

@@ -1,7 +1,7 @@
 <?php
     session_start();
     include('../model/manipulationBDD.php');
-    include('../config.php');
+    include('../model/config.php');
     //echo "Ca bloque 1";
     //var_dump($_FILES['fileselect']);
     // Si tous les champs sont rentrés
@@ -17,7 +17,7 @@
         $relations = $_POST['relations'];
         $image = $_FILES['fileselect'];
 
-        $date = date("YmdHis");
+        $date = date("Ymd");
 
         if($titre !== "" && $description !== "" && $categorie !== "" && $ressources !== "" && $relations !== "" && $image !== "")
         {

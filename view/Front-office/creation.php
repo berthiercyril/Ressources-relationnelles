@@ -3,11 +3,9 @@
     include("../../model/manipulationBDD.php");
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" href="../../css/indexStyle.css">
     </head>
     <body>
@@ -56,8 +54,9 @@
                     ?>
                     <select name="categories" id="selectCategories" class="select" required>
                         <option value="">--Choisissez une catégorie--</option>
-                        <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) : ?>
-                        <option value="<?php echo htmlspecialchars($row['id_categories']); ?>"> <?php echo htmlspecialchars($row['lib_categories']); ?></option>
+                        <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) :  ?>
+                            
+                        <option value="<?php echo htmlspecialchars($row['id_categories']); ?>"> <?php echo htmlspecialchars(utf8_encode($row['lib_categories'])); ?></option>
                         <?php endwhile; ?>
                     </select><br>
                     <?php
@@ -67,7 +66,7 @@
                     <select name="ressources" id="selectRessources" class="select" required>
                         <option value="">--Choisissez une ressource--</option>
                         <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) : ?>
-                        <option value="<?php echo htmlspecialchars($row['id_type']); ?>"> <?php echo htmlspecialchars($row['lib_type']); ?></option>
+                        <option value="<?php echo htmlspecialchars($row['id_type']); ?>"> <?php echo htmlspecialchars(utf8_encode($row['lib_type'])); ?></option>
                         <?php endwhile; ?>
                     </select><br>
                     <?php
@@ -77,7 +76,7 @@
                     <select name="relations" id="selectRelations" class="select" required>
                         <option value="">--Choisissez une relation--</option>
                         <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) : ?>
-                        <option value="<?php echo htmlspecialchars($row['id_relation_ressource']); ?>"><?php echo htmlspecialchars($row['lib_type_relation']); ?></option>
+                        <option value="<?php echo htmlspecialchars($row['id_relation_ressource']); ?>"><?php echo htmlspecialchars(utf8_encode($row['lib_type_relation'])); ?></option>
                         <?php endwhile; ?>
                     </select>
                 </div>

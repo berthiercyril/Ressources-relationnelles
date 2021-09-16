@@ -1,5 +1,5 @@
 <?php
-    include('config.php');
+    include('../model/config.php');
     include('../model/manipulationBDD.php');
     
     if(isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['nom']) && isset($_POST['prenom']))
