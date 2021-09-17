@@ -13,10 +13,10 @@
             <a class="nav-link active" aria-current="page" href="BO_liste_ressources.php">liste des ressources</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Validation ressources</a>
+            <a class="nav-link active" href="#">Validation ressources</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Statistiques</a>
+            <a class="nav-link active" href="#">Statistiques</a>
             </li>
         </div>
     </div>

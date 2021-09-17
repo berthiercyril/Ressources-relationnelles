@@ -26,13 +26,13 @@
             $i++;
         ?>
        <div class="card text-center container">
-            <div>
+            <div class="card-header row">
                 <h4><?php echo htmlspecialchars(utf8_encode($row['titre_ressource']));?></h4> 
             </div>
             <div class="card-body">
                 <h5 class="card-title"></h5>
                 <p class="card-text"><?php echo htmlspecialchars($row['description_ressource']); ?></p>
-                <a href="#" class="btn btn-outline-primary">Voir plus</a>
+                <a href="<?php echo' BO_affichage_ressource.php?ressource=' . $row["id_ressource"] . ''?>" class="btn btn-outline-primary">Voir plus</a>
             </div>
             
             <div class="card-footer bg-light text-dark row">
@@ -42,8 +42,8 @@
                 <!-- <a href="" class="btn btn-danger" name="supprimer" data-toggle="modal" data-target="#supprimerRessource<?php echo $i?>">Supprimer</a> -->
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimerRessource<?php echo $i?>">supprimer</button>
                 </div>
-                <div class="col-6 text-end">
-                    <label class="text-start"> <?php echo htmlspecialchars($row['date_creation_ressource']); ?></label>
+                <div class="col-6 align-self-center text-end">
+                    <label> <?php echo htmlspecialchars($row['date_creation_ressource']); ?></label>
                 </div>
             </div>
             </div><br>
