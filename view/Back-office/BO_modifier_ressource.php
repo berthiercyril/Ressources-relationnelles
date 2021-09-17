@@ -35,13 +35,13 @@
 
             $height = $size[1] / ($size[0] / 450);
             ?>
-            <form action="../../controller/BO_Modifier_Ressource.php" method="POST" enctype="multipart/form-data">
+            <form action=" <?php echo' ../../controller/BO_Modifier_Ressource.php?ressource=' . $_GET["ressource"] . ''?>" method="POST" enctype="multipart/form-data">
                 <div class="container">
                     <div class="row justify-content-md-center">
                         <div class="col-10 align-self-center">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Titre </span>
-                                <input type="text" class="form-control" placeholder="Username" value="<?php echo htmlspecialchars($donnees['titre_ressource']);?>" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" name="titre" placeholder="Titre" value="<?php echo htmlspecialchars(utf8_encode($donnees['titre_ressource']));?>" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                             
                             <?php
@@ -98,10 +98,10 @@
                                 <?php endwhile; ?>
                             </select><br>
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 300px"><?php echo nl2br(htmlspecialchars($donnees['description_ressource']));?></textarea>
+                                <textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea" style="height: 300px"><?php echo nl2br(htmlspecialchars($donnees['description_ressource']));?></textarea>
                                 <label for="floatingTextarea">Description :</label>
                             </div>
-                            <div class="div-img"><img src="<?php echo $donnees['chemin_document']?>" class="img-fluid" width='450' height='<?php echo $height?>'></div> <!--/!\ Chemin à changer/!\-->
+                            <img src="<?php echo $donnees['chemin_document']?>" class="img-fluid rounded mx-auto d-block" width='450' height='<?php echo $height?>'> <!--/!\ Chemin à changer/!\-->
                             <br>
                             <div class="row">
                                 <div class="col-6 text-start">
@@ -110,7 +110,7 @@
                                 <div class="col-6 text-end">
                                     <a href="BO_liste_ressources.php" class="btn btn-outline-secondary">Annuler</a>
                                     <!-- <a href="BO_liste_ressources.php" class="btn btn-success">Sauvegarder</a> -->
-                                    <input type="submit" class="btn btn-success" value="Sauvegarder">
+                                    <input type="submit" class="btn btn-success" name="submit" value="Sauvegarder">
                                 </div>
                             </div>
                         </div>
@@ -147,8 +147,6 @@
                 </div>
             </div>
         </div>
-        
-       
 
         
     </body>

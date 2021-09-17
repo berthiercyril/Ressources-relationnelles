@@ -68,6 +68,16 @@
 
         }
 
+        public function modifierRessources($var_id_ressource, $var_titre, $var_description, $var_id_type, $var_id_categories, $var_id_relation_ressource, $conn){
+            $requete = ("UPDATE ressources SET titre_ressource='".$var_titre."', description_ressource='".$var_description."', id_type='".$var_id_type."', id_categories='".$var_id_categories."', id_relation_ressource='".$var_id_relation_ressource."' WHERE id_ressource='".$var_id_ressource."'");
+            $conn->exec($requete);
+        }
+
+        public function supprimerRessources($var_id_ressource, $conn){
+            $requete = ("DELETE FROM ressources WHERE id_ressource = '".$var_id_ressource."'");
+            $conn->exec($requete);
+        }
+
         public function ajouterCommentaire($auteur, $commentaire, $id_ressource, $conn)
         {
             $dateCommentaire = date('Y-m-d H:i:s');

@@ -6,6 +6,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+
 
     </head>
     <body>
@@ -19,11 +21,13 @@
 
             //echo "<h1>CATALOGUE KEVIN</h1></br></br>";
             $donnee = $mAffiche->afficheDonnees($conn);
+            $i=0;
             while($row = $donnee->fetch(PDO::FETCH_ASSOC)) :
+            $i++;
         ?>
        <div class="card text-center container">
             <div>
-                <h4><?php echo htmlspecialchars($row['titre_ressource']); ?></h4>
+                <h4><?php echo htmlspecialchars(utf8_encode($row['titre_ressource']));?></h4> 
             </div>
             <div class="card-body">
                 <h5 class="card-title"></h5>
@@ -35,15 +39,41 @@
                 <div class="col-6 text-start">
                 <a href="#" class="btn btn-primary">Suspendre</a>
                 <a href="BO_modifier_ressource.php?ressource=<?php echo htmlspecialchars($row['id_ressource']); ?>" class="btn btn-warning">Modifier</a>
-                <a href="#" class="btn btn-danger">Supprimer</a>
+                <!-- <a href="" class="btn btn-danger" name="supprimer" data-toggle="modal" data-target="#supprimerRessource<?php echo $i?>">Supprimer</a> -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimerRessource<?php echo $i?>">supprimer</button>
                 </div>
                 <div class="col-6 text-end">
                     <label class="text-start"> <?php echo htmlspecialchars($row['date_creation_ressource']); ?></label>
                 </div>
             </div>
-            
+            </div><br>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="supprimerRessource<?php echo $i?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ressource</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer la ressource ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Non</button>
+                    <form action="<?php echo' ../../controller/BO_Supprimer_Ressource.php?ressource=' . $row["id_ressource"] . ''?>" method="post">
+                        <button type="submit" class="btn btn-danger" name="supprimer" >Oui</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <?php endwhile; ?>
+
         
-        </div><br><?php endwhile; ?>
+
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end container">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
