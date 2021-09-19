@@ -20,7 +20,6 @@
         <div id="logo" >
             <img class="mx-auto d-block" src="../../images/Logo-removebg.png">
         </div>
-        
         <script src="" async defer></script>
 
         

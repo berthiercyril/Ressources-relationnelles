@@ -135,6 +135,45 @@
                 header('Location: view/login.php?erreur=1'); // utilisateur ou mdp incorrect
             }*/
         }
+
+        public function verificationLoginAdmin($conn, $mail, $password)
+        {
+            $req = $conn->query("SELECT id_utilisateur, mdp, nom, prenom, utilisateur.id_type_compte, type_utilisateur FROM utilisateur, type_compte WHERE utilisateur.id_type_compte=type_compte.id_type_compte AND mail = '$mail' AND utilisateur.id_type_compte IN (1,2,3)");
+                //$req = $conn->query("SELECT COUNT(id_user) AS countIdUser, id_user FROM utilisateur WHERE mail = '" . $username . "' AND mdp = '" . $password ."' ");
+            $res = $req->fetch();
+            //print_r($res);
+            $hashed_password = $res['mdp'];
+            echo "Password = ". $password . " | hashed_password = ". $hashed_password;
+            if(password_verify($password, $hashed_password))
+            {
+                $_SESSION['username'] = $mail;
+                $_SESSION['idUser'] = $res['id_utilisateur'];
+                $_SESSION['Nom'] = $res['nom'];
+                $_SESSION['Prenom'] = $res['prenom'];
+                $_SESSION['idTypeCompte'] = $res['id_type_compte'];
+                $_SESSION['type_utilisateur'] = $res['type_utilisateur'];
+                header('Location: ../view/Back-office/BO_index.php');
+                
+            }
+            elseif ($res['id_type_compte'] == 4) {
+                header('Location: ../view/Back-office/BO_login.php?erreur=3'); // droit insuffisant
+            }
+            else
+            {
+                header('Location: ../view/Back-office/BO_login.php?erreur=1'); // utilisateur ou mdp incorrect
+            }
+            /*if($res['countIdUser'] > 0)
+            {
+                $_SESSION['mail'] = $mail;
+                $_SESSION['idUser'] = $res['id_user'];
+                header('Location: view/index.php');
+            }
+            else
+            {
+                header('Location: view/login.php?erreur=1'); // utilisateur ou mdp incorrect
+            }*/
+        }
+
         public function verifyPassword($password, $hashed_password)
         {
             if(password_verify($password, $hashed_password))

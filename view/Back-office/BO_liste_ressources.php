@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <html>
 <head>
         <meta charset="utf-8">
@@ -11,12 +14,68 @@
 
     </head>
     <body>
-        <?php include('navbar.php')?>
+        <?php include('navbar.php');
+            include('../../model/config.php');
+            include('../../model/manipulationBDD.php');
+        ?>
         <h1 class="text-center">Gestion des Ressources</h1><br>
 
         <?php
-            include('../../model/config.php');
-            include('../../model/manipulationBDD.php');
+            $typeSelect = new manipulationBDD;
+
+            $res = $typeSelect->affichageTypeCategories($conn);
+        ?>
+        <form action="" method="post">
+            <select name="categories" id="selectCategories" class="form-select" required>
+                <option value="">--Choisissez une catégorie--</option>
+                <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) : 
+                    
+                    if($donnees['id_categories'] == $row['id_categories']){ ?>
+                        <option selected="selected" value="<?php echo htmlspecialchars($row['id_categories']); ?>"> <?php echo htmlspecialchars($row['lib_categories']); ?></option>
+                    <?php }
+                    else{?>
+                        <option value="<?php echo htmlspecialchars($row['id_categories']); ?>"> <?php echo htmlspecialchars($row['lib_categories']); ?></option>
+                    <?php } ?>
+                <?php endwhile; ?>
+            </select><br>
+            <?php
+                $res = $typeSelect->affichageTypeRelations($conn);
+            ?>
+            <select name="relations" id="selectRelations" class="form-select" required>
+                <option value="">--Choisissez une relation--</option>
+                <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) :
+
+                    if($donnees['id_relation_ressource'] == $row['id_relation_ressource']){ ?>
+                        <option selected="selected" value="<?php echo htmlspecialchars($row['id_relation_ressource']); ?>"><?php echo htmlspecialchars($row['lib_type_relation']); ?></option>
+                    <?php }
+                    else{?>
+                        <option value="<?php echo htmlspecialchars($row['id_relation_ressource']); ?>"><?php echo htmlspecialchars($row['lib_type_relation']); ?></option>
+                    <?php } ?>
+
+                
+                <?php endwhile; ?>
+            </select><br>
+            <?php
+
+            $res = $typeSelect->affichageTypeRessources($conn);
+            ?>
+            <select name="ressources" id="selectRessources" class="form-select" required>
+                <option value="">--Choisissez une ressource--</option>
+                <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) :
+
+                    if($donnees['id_type'] == $row['id_type']){ ?>
+                        <option selected="selected" value="<?php echo htmlspecialchars($row['id_type']); ?>"> <?php echo htmlspecialchars($row['lib_type']); ?></option>
+                    <?php }
+                    else{?>
+                        <option value="<?php echo htmlspecialchars($row['id_type']); ?>"> <?php echo htmlspecialchars($row['lib_type']); ?></option>
+                    <?php } ?>
+                    
+                
+                <?php endwhile; ?>
+            </select><br>
+        </form>            
+
+        <?php
             $mAffiche= new manipulationBDD();
 
             //echo "<h1>CATALOGUE KEVIN</h1></br></br>";
@@ -27,7 +86,7 @@
         ?>
        <div class="card text-center container">
             <div class="card-header row">
-                <h4><?php echo htmlspecialchars(utf8_encode($row['titre_ressource']));?></h4> 
+                <h4><?php echo htmlspecialchars($row['titre_ressource']);?></h4> 
             </div>
             <div class="card-body">
                 <h5 class="card-title"></h5>
