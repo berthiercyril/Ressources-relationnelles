@@ -1,0 +1,293 @@
+body{
+    background-color: white;
+    font-family: "Titillium Web", sans-serif;
+    margin: 0px;
+}
+h1{
+    color: black;
+    font-weight: 300;
+    font-size: 2em;
+    text-align: center;
+    font-weight: bolder;
+}
+#logo
+{
+    width: 31%;
+    height: auto;
+    margin: auto;
+    display: block;
+}
+.topnav a.connexion
+{
+    float: right;
+}
+.topnav a.deconnexion
+{
+    float: right;
+    padding-bottom: 6px;
+    padding-top: 10px;
+    padding-right: 21px;
+}
+
+.topnav a img
+{
+    width: 150%;
+}
+
+.topnav /* nav background color*/
+{
+    background-color: #333;/*5db075*/
+    overflow: hidden;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+
+}
+
+.topnav a /* Couleur écriture */
+{
+    float: left;
+    color: #F2F2F2;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+.topnav a:hover
+{
+    background-color: #e6e6e6;
+    color: black;
+}
+.topnav a.active
+{
+    background-color: #5db075;
+    color: white;
+}
+
+/* Set a style for all buttons */
+
+input[type=submit]{
+    background-color: #5db075;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    display: block;
+    margin : auto;
+    font-weight: bolder;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 20px;
+}
+input[type=submit]:hover{
+    background-color: #46a060;
+    color: white;
+}
+
+#container{
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 4%;
+    
+}
+form{
+    width: 100%;
+    padding: 30px;
+    border-radius: 10px;
+    left: 50%;
+    border-color:#5db075;
+    border-style: solid;
+}
+#container h1{
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+#titre,#description,#password,#email, .inscription{
+    width: 400px;
+
+
+    background: #F6F6F6;
+
+    color: #7e7b7b;
+    border: 1px solid #E8E8E8;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+    font-family: "Titillium Web", sans-serif;
+    padding-left: 10px;
+}
+
+#description{
+    height: 80px;
+    
+}
+
+.select{
+    background: #F9F9F9;
+    border: 1px solid #E6E6E6;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+/*.article
+{
+    text-align: center;
+    border: solid #5db075;
+    border-radius: 20px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 1%;
+}
+.azerty
+{
+    border: none;
+    border-radius: 20px;
+    /*background-color: rgba(93, 176, 116, 0.226);*/
+    /*opacity: 0.5;*/
+    /*margin-left: 20%;
+    margin-right: 20%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+}*/
+.list-group-item{
+    text-align: center;
+    /*border-color: #5db075;*/
+    /*border-style: solid;*/
+            border-radius: 20px;
+            
+    padding-top: 1%;
+    padding-bottom: 1%;
+    /*padding-left: 20%;*/
+    /*margin-left: 25%;
+    margin-right: 25%;*/
+    margin-bottom: 2%;
+}
+.list-group-item a:link{
+    text-decoration: none;
+    
+}
+.list-group-item a{
+    color: black;
+    
+}
+.list-group{
+    /*border: solid blue;*/
+    border-radius: 20px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.list-group-item-action{
+
+    border:3px solid #5db075;
+}
+
+/*.contenu_ressource{
+    /*margin-left: 2%;*/
+    /*padding-right: 2%;*/
+/*}
+.contenu_ressource p{
+    /*text-align: justify;*/
+/*}*/
+.test_com form{
+    margin-right: 40%;
+}
+.list-group-item+.list-group-item {
+    border-top-width: 3px;
+}
+
+.commentaires
+{
+    width: 40%;
+    margin-left: 29.5%;
+}
+
+.contenu_ressource
+{
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    width: 70%;
+    padding: 5%;
+    border-radius: 20px;
+    border: 3px solid #5db075;
+    margin-bottom: 40px;
+}
+
+.contenu_ressource #date
+{
+    color: #5db075;
+    font-size: 16px;
+    text-align: left;
+}
+
+.contenu_ressource a
+{
+    background-color: #5db075;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    font-weight: bolder;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 20px;
+}
+
+.contenu_ressource a:hover
+{
+    background-color: #46a060;
+    color: white;
+}
+
+.titre
+{
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bolder;
+}
+
+.solid
+{
+    border-bottom: 1px solid #5db075;
+    width: 42%;
+    margin: auto;
+    margin-bottom: 15px;
+
+}
+
+.div-img
+{
+    padding-left: 30%;
+}
+
+.modification_profil
+{
+    margin-left: 20%;
+    margin-top: 10%;
+}
+.modification_profil a
+{
+    border: solid 0px;
+    background-color: #5db075;
+    color: white;
+}
+
+.modification_profil a:hover
+{
+    background-color: #46a060;
+    color: white;
+}

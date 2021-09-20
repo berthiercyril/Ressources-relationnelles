@@ -1,0 +1,100 @@
+body{
+    background-color: white;
+    font-family: "Titillium Web", sans-serif;
+    margin: 0px;
+}
+#container{
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+/* Border form */
+
+form{
+    width: 100%;
+    padding: 30px;
+    background-color: #13232F;
+    box-shadow: 0 4px 10px 4px rgba(#13232F.3);
+    border-radius: 4px;
+    left: 49%;
+}
+h1{
+    color: white;
+    font-weight: 300;
+    font-size: 2em;
+}
+#container h1{
+    width: 38%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+/* Full-width inputs */
+
+input[type=email], input[type=password], input[type=text]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #A0B3B0;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+
+/* Set a style for all buttons */
+
+input[type=submit]{
+    background-color: #5db075;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bolder;
+}
+input[type=submit]:hover{
+    background-color: #46a060;
+    color: white;
+}
+
+label{
+    color: white;
+}
+.case{
+    color: #24323D;
+}
+.req{
+    color: #5db075;
+}
+.topnav a.connexion
+{
+    float: right;
+}
+
+.topnav /* nav background color*/
+{
+    background-color: #333;/*5db075*/
+    overflow: hidden;
+}
+
+.topnav a /* Couleur écriture */
+{
+    float: left;
+    color: #F2F2F2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover
+{
+    background-color: #DDD;
+    color: black;
+}
+.topnav a.active
+{
+    background-color: #5db075;
+    color: white;
+}
