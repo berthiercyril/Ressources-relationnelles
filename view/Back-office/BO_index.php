@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if(empty($_SESSION['idTypeCompte'])){
+        header('Location: BO_login.php');
+    }
 ?>
 <!DOCTYPE html>
 
