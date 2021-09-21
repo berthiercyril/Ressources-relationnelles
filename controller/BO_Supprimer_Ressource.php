@@ -18,6 +18,13 @@
         $ressource->suspendreRessources($_GET['ressource'], $conn);
         header('location: ../view/Back-office/BO_liste_ressources.php'); // on redirige vers la bonne ressource grâce à l'id qu'on a dans l'url
     }
+    elseif (isset($_POST['valider'])) {
+        // instanciation de l'objet
+        $ressource = new manipulationBDD();
+        // modification de la ressource dan la BDD
+        $ressource->validerRessources($_GET['ressource'], $conn);
+        header('location: ../view/Back-office/BO_validation_ressource.php'); // on redirige vers la bonne ressource grâce à l'id qu'on a dans l'url
+    }
 
     else{
        echo'erreur2';

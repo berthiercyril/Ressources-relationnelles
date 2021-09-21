@@ -15,36 +15,30 @@
                 if ($_SESSION['idTypeCompte'] == 1) {       // Moderateur
                     echo'
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="BO_liste_ressources.php">liste des ressources</a>
+                    <a class="nav-link active" aria-current="page" href="BO_liste_ressources.php">Liste des ressources</a>
                     </li>';
                 }
                 elseif ($_SESSION['idTypeCompte'] == 2) {       // Administrateur
                     echo'
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="BO_liste_ressources.php">liste des ressources</a>
+                    <a class="nav-link active" aria-current="page" href="BO_liste_ressources.php">Liste des ressources</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link active" href="#">Validation ressources</a>
-                    </li><li class="nav-item">
-                    <a class="nav-link active" href="#">Statistiques</a>
-                    </li>
+                    <a class="nav-link active" href="Bo_validation_ressource.php">Validation ressources</a>
                     <li class="nav-item">
-                    <a class="nav-link active" href="#">Gestion compte</a>
+                    <a class="nav-link active" href="BO_gestion_compte.php">Gestion compte</a>
                     </li>';
                 }
                 elseif ($_SESSION['idTypeCompte'] == 3) {   // Super-Administrateur
                     echo'
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="BO_liste_ressources.php">liste des ressources</a>
+                    <a class="nav-link active" aria-current="page" href="BO_liste_ressources.php">Liste des ressources</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link active" href="#">Validation ressources</a>
+                    <a class="nav-link active" href="Bo_validation_ressource.php">Validation ressources</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link active" href="#">Statistiques</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link active" href="#">Gestion compte</a>
+                    <a class="nav-link active" href="BO_gestion_compte.php">Gestion compte</a>
                     </li>';
                 }
             }

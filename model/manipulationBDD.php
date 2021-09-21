@@ -114,6 +114,11 @@
             $conn->exec($requete);
         }
 
+        public function validerRessources($var_id_ressource, $conn){
+            $requete = ("UPDATE ressources SET id_statut= 3 WHERE id_ressource = '".$var_id_ressource."'");
+            $conn->exec($requete);
+        }
+
         public function ajouterCommentaire($auteur, $commentaire, $id_ressource, $conn)
         {
             $dateCommentaire = date('Y-m-d H:i:s');
@@ -123,7 +128,7 @@
         public function afficherCommentaire($conn)
         {
             // Récupération des commentaires
-            $req = $conn->prepare('SELECT nom, prenom, commentaire, DATE_FORMAT(date_creation_commentaire, \'%d/%m/%Y\') AS date_creation_commentaire, id_commentaire, id_ressource FROM commentaires, utilisateur WHERE utilisateur.id_utilisateur=commentaires.id_utilisateur AND id_ressource = ? ORDER BY date_creation_commentaire DESC');
+            $req = $conn->prepare('SELECT nom, prenom, commentaire, DATE_FORMAT(date_creation_commentaire, \'%d/%m/%Y\') AS date_creation_commentaire, id_commentaire, id_ressource FROM commentaires, utilisateur WHERE utilisateur.id_utilisateur=commentaires.id_utilisateur AND id_ressource = ? ORDER BY id_commentaire DESC');
             $req->execute(array($_GET['ressource']));
 
             while ($donnees = $req->fetch())
@@ -131,12 +136,12 @@
             ?>
             <!-- <div class="container"> -->
             <label><strong><?php echo htmlspecialchars($donnees['prenom']. ' ' .$donnees['nom']); ?></strong> le <?php echo $donnees['date_creation_commentaire']; ?></label>
-            <a href="../../CONTROLLER/BO_Ajout_Commentaire.php?ressource=<?php echo htmlspecialchars($donnees['id_ressource']); ?>&commentaire=<?php echo htmlspecialchars($donnees['id_commentaire']); ?>" class="btn btn-danger" name="supprimer">Supprimer</a>
+            <!-- <a href="../../CONTROLLER/BO_Ajout_Commentaire.php?ressource=<?php echo htmlspecialchars($donnees['id_ressource']); ?>&commentaire=<?php echo htmlspecialchars($donnees['id_commentaire']); ?>" class="btn btn-danger" name="supprimer">Supprimer</a> -->
             <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
             <hr class="solid">
             <!-- </div> -->
             <?php 
-            } // Fin de la boucle des commentaires
+            } // Fin de la boucle des commentaires 
             $req->closeCursor();
         }
 
@@ -286,6 +291,14 @@
             catch(PDOException $e){
                 die($e->getMessage());
             }
+        }
+
+        public function activerUtilisateur($var_id_utilisateur, $conn){
+            $req = $conn->query("UPDATE utilisateur SET verifie = 1  WHERE id_utilisateur= '" . $var_id_utilisateur . "'  ");
+        }
+
+        public function desactiverUtilisateur($var_id_utilisateur, $conn){
+            $req = $conn->query("UPDATE utilisateur SET verifie = 0  WHERE id_utilisateur= '" . $var_id_utilisateur . "'  ");
         }
 
 

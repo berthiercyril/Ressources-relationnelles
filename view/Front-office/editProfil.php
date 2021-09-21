@@ -30,6 +30,9 @@
                     echo '<a href="creation.php">Créer une ressource</a>';
                     echo '<a class="deconnexion" href="../../deconnexion.php"><img src="../../images/deconnexion.svg" title="imageDeconnexion"></a>';
                     echo '<a class="active connexion" href="profil.php">Mon profil</a>';
+                    if ($_SESSION['idTypeCompte'] != 4) {
+                        echo '<a class="connexion" href="../Back-office/BO_index.php">Admin</a>';
+                    }
                 }
                 else // Le visiteur n'est pas connecté
                 {
