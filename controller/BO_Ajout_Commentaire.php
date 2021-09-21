@@ -13,6 +13,17 @@
         header('location: ../view/Back-office/BO_affichage_ressource.php?ressource=' . $_GET["ressource"] . ''); // on redirige vers la bonne ressource grâce à l'id qu'on a dans l'url
         echo'test';
     }
+    elseif(isset($_POST['supprimer'])) 
+    {
+        // instanciation de l'objet
+        $commentaire = new manipulationBDD();
+        // ajout du commentaire dans la BDD
+        // var_dump($_POST['auteur']);
+        $commentaire->supprimerCommentaire($_GET['ressource'], $conn);
+
+        header('location: ../view/Back-office/BO_affichage_ressource.php?ressource=' . $_GET["ressource"] . ''); // on redirige vers la bonne ressource grâce à l'id qu'on a dans l'url
+        echo'test';
+    }
 
     else{
        echo'erreur';

@@ -41,9 +41,10 @@
         public function afficheDonnees($conn)
         {
             // Affiche le titre_ressource de l'article ainsi que sa date de création
-            try{
-            $requete = $conn->query('SELECT id_ressource, description_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y\') AS date_creation_ressource FROM ressources ORDER BY date_creation_ressource DESC;');
+            try{    
+            $requete = $conn->query('SELECT ressources.id_ressource, description_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y\') AS date_creation_ressource FROM ressources WHERE id_statut != 4 ORDER BY date_creation_ressource DESC;');
             }
+
             catch(PDOException $e){
                 die($e->getMessage());
             }
@@ -56,7 +57,7 @@
         {
 
             // Affiche le titre_ressource de l'article ainsi que sa date de création
-            try{
+            try{        
                 $requete = $conn->query('SELECT id_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y\') AS date_creation_ressource FROM ressources WHERE id_utilisateur= '.$_SESSION['idUser'].' ORDER BY date_creation_ressource DESC;');
                 }
                 catch(PDOException $e){
@@ -73,8 +74,43 @@
             $conn->exec($requete);
         }
 
+        public function filtrerRessources($var_id_categories, $var_id_relation_ressource, $var_id_type, $conn){
+            $requete = ("SELECT ressources.id_ressource, description_ressource, titre_ressource, DATE_FORMAT(date_creation_ressource, \'%d/%m/%Y\') AS date_creation_ressource 
+            FROM ressources 
+            WHERE id_statut != 4");
+            if (isset($var_id_type)){
+                $requete += " AND id_type ='".$var_id_type."'";
+            }
+            if (isset($var_id_categories)){
+                $requete += " AND id_categories ='".$var_id_categories."'";
+            }
+            if (isset($var_id_relation_ressource)){
+                $requete += " AND id_relation_ressource ='".$var_id_relation_ressource."'";
+            }
+            $requete += "ORDER BY date_creation_ressource DESC";
+            $conn->exec($requete);
+        }
+
+        public function ajouterFavoris($var_id_ressource, $conn){
+            $requete = $conn->query("SELECT * FROM suivi_ressource WHERE id_ressource='".$var_id_ressource."' AND id_utilisateur='".$_SESSION['idUser']."'");
+
+            if ($requete == null) {
+                $requete = $conn->query("INSERT INTO suivi_ressource (ressource_exploitee, ressource_favorie, ressource_mise_de_cote, id_ressource, id_utilisateur) VALUES ('0','1', '0', '".$var_id_ressource."', '".$_SESSION['idUser']."')");
+                return $var_id_ressource;
+            }
+            else{
+                $requete = ("UPDATE suivi_ressource SET ressource_favorie='1' WHERE id_ressource='".$var_id_ressource."' AND id_utilisateur='".$_SESSION['idUser']."'");
+            $conn->exec($requete);
+            }
+        }
+
         public function supprimerRessources($var_id_ressource, $conn){
             $requete = ("DELETE FROM ressources WHERE id_ressource = '".$var_id_ressource."'");
+            $conn->exec($requete);
+        }
+
+        public function suspendreRessources($var_id_ressource, $conn){
+            $requete = ("UPDATE ressources SET id_statut= 4 WHERE id_ressource = '".$var_id_ressource."'");
             $conn->exec($requete);
         }
 
@@ -87,14 +123,15 @@
         public function afficherCommentaire($conn)
         {
             // Récupération des commentaires
-            $req = $conn->prepare('SELECT nom, prenom, commentaire, DATE_FORMAT(date_creation_commentaire, \'%d/%m/%Y à %H:%i\') AS date_creation_commentaire FROM commentaires, utilisateur WHERE utilisateur.id_utilisateur=commentaires.id_utilisateur AND id_ressource = ? ORDER BY date_creation_commentaire DESC');
+            $req = $conn->prepare('SELECT nom, prenom, commentaire, DATE_FORMAT(date_creation_commentaire, \'%d/%m/%Y\') AS date_creation_commentaire, id_commentaire, id_ressource FROM commentaires, utilisateur WHERE utilisateur.id_utilisateur=commentaires.id_utilisateur AND id_ressource = ? ORDER BY date_creation_commentaire DESC');
             $req->execute(array($_GET['ressource']));
 
             while ($donnees = $req->fetch())
             {
             ?>
             <!-- <div class="container"> -->
-            <p><strong><?php echo htmlspecialchars($donnees['prenom']. ' ' .$donnees['nom']); ?></strong> le <?php echo $donnees['date_creation_commentaire']; ?></p>
+            <label><strong><?php echo htmlspecialchars($donnees['prenom']. ' ' .$donnees['nom']); ?></strong> le <?php echo $donnees['date_creation_commentaire']; ?></label>
+            <a href="../../CONTROLLER/BO_Ajout_Commentaire.php?ressource=<?php echo htmlspecialchars($donnees['id_ressource']); ?>&commentaire=<?php echo htmlspecialchars($donnees['id_commentaire']); ?>" class="btn btn-danger" name="supprimer">Supprimer</a>
             <p><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
             <hr class="solid">
             <!-- </div> -->
@@ -103,10 +140,15 @@
             $req->closeCursor();
         }
 
+        public function supprimerCommentaire($var_id_commentaire, $conn){
+            $requete = ("DELETE FROM commentaires WHERE id_commentaire = '".$var_id_commentaire."'");
+            $conn->exec($requete);
+        }
+
         
         public function verificationLogin($conn, $mail, $password)
         {
-            $req = $conn->query("SELECT id_utilisateur, mdp, nom, prenom FROM utilisateur WHERE mail = '$mail'");
+            $req = $conn->query("SELECT id_utilisateur, mdp, nom, prenom, utilisateur.id_type_compte, type_utilisateur FROM utilisateur, type_compte WHERE utilisateur.id_type_compte=type_compte.id_type_compte AND mail = '$mail'");
                 //$req = $conn->query("SELECT COUNT(id_user) AS countIdUser, id_user FROM utilisateur WHERE mail = '" . $username . "' AND mdp = '" . $password ."' ");
             $res = $req->fetch();
             //print_r($res);
@@ -118,6 +160,8 @@
                 $_SESSION['idUser'] = $res['id_utilisateur'];
                 $_SESSION['Nom'] = $res['nom'];
                 $_SESSION['Prenom'] = $res['prenom'];
+                $_SESSION['idTypeCompte'] = $res['id_type_compte'];
+                $_SESSION['type_utilisateur'] = $res['type_utilisateur'];
                 header('Location: ../view/Front-office/index.php');
                 
             }else

@@ -11,7 +11,14 @@
         header('location: ../view/Back-office/BO_liste_ressources.php'); // on redirige vers la bonne ressource grâce à l'id qu'on a dans l'url
         echo'test';
     }
+    elseif (isset($_POST['suspendre'])) {
+        // instanciation de l'objet
+        $ressource = new manipulationBDD();
+        // modification de la ressource dan la BDD
+        $ressource->suspendreRessources($_GET['ressource'], $conn);
+        header('location: ../view/Back-office/BO_liste_ressources.php'); // on redirige vers la bonne ressource grâce à l'id qu'on a dans l'url
+    }
 
     else{
-       echo'erreur';
+       echo'erreur2';
     }

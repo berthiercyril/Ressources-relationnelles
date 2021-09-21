@@ -44,7 +44,7 @@
                         <div class="col-10 align-self-center">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Titre </span>
-                                <input type="text" class="form-control" name="titre" placeholder="Titre" value="<?php echo htmlspecialchars(utf8_encode($donnees['titre_ressource']));?>" aria-label="Username" aria-describedby="basic-addon1" disabled="disabled">
+                                <input type="text" class="form-control" name="titre" placeholder="Titre" value="<?php echo htmlspecialchars($donnees['titre_ressource']);?>" aria-label="Username" aria-describedby="basic-addon1" disabled="disabled">
                             </div>
                             
                             <?php
@@ -57,10 +57,10 @@
                                 <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) : 
                                     
                                     if($donnees['id_categories'] == $row['id_categories']){ ?>
-                                        <option selected="selected" value="<?php echo htmlspecialchars($row['id_categories']); ?>"> <?php echo htmlspecialchars(utf8_encode($row['lib_categories'])); ?></option>
+                                        <option selected="selected" value="<?php echo htmlspecialchars($row['id_categories']); ?>"> <?php echo htmlspecialchars($row['lib_categories']); ?></option>
                                     <?php }
                                     else{?>
-                                        <option value="<?php echo htmlspecialchars($row['id_categories']); ?>"> <?php echo htmlspecialchars(utf8_encode($row['lib_categories'])); ?></option>
+                                        <option value="<?php echo htmlspecialchars($row['id_categories']); ?>"> <?php echo htmlspecialchars($row['lib_categories']); ?></option>
                                     <?php } ?>
                                 <?php endwhile; ?>
                             </select><br>
@@ -73,10 +73,10 @@
                                 <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) :
 
                                     if($donnees['id_type'] == $row['id_type']){ ?>
-                                        <option selected="selected" value="<?php echo htmlspecialchars($row['id_type']); ?>"> <?php echo htmlspecialchars(utf8_encode($row['lib_type'])); ?></option>
+                                        <option selected="selected" value="<?php echo htmlspecialchars($row['id_type']); ?>"> <?php echo htmlspecialchars($row['lib_type']); ?></option>
                                     <?php }
                                     else{?>
-                                        <option value="<?php echo htmlspecialchars($row['id_type']); ?>"> <?php echo htmlspecialchars(utf8_encode($row['lib_type'])); ?></option>
+                                        <option value="<?php echo htmlspecialchars($row['id_type']); ?>"> <?php echo htmlspecialchars($row['lib_type']); ?></option>
                                     <?php } ?>
                                     
                                 
@@ -91,10 +91,10 @@
                                 <?php while($row = $res->fetch(PDO::FETCH_ASSOC)) :
 
                                     if($donnees['id_relation_ressource'] == $row['id_relation_ressource']){ ?>
-                                        <option selected="selected" value="<?php echo htmlspecialchars($row['id_relation_ressource']); ?>"><?php echo htmlspecialchars(utf8_encode($row['lib_type_relation'])); ?></option>
+                                        <option selected="selected" value="<?php echo htmlspecialchars($row['id_relation_ressource']); ?>"><?php echo htmlspecialchars($row['lib_type_relation']); ?></option>
                                     <?php }
                                     else{?>
-                                        <option value="<?php echo htmlspecialchars($row['id_relation_ressource']); ?>"><?php echo htmlspecialchars(utf8_encode($row['lib_type_relation'])); ?></option>
+                                        <option value="<?php echo htmlspecialchars($row['id_relation_ressource']); ?>"><?php echo htmlspecialchars($row['lib_type_relation']); ?></option>
                                     <?php } ?>
 
                                 

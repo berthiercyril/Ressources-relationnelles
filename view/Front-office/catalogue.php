@@ -27,6 +27,9 @@
                     //echo '<a class="connexion" href="../deconnexion.php">Déconnexion</a>';
                     echo '<a class="deconnexion" href="../../controller/deconnexion.php"><img src="../../images/deconnexion.svg" title="imageDeconnexion"></a>';
                     echo '<a class="connexion" href="profil.php">Mon profil</a>';
+                    if ($_SESSION['idTypeCompte'] != 4) {
+                        echo '<a class="connexion" href="../Back-office/BO_index.php">Admin</a>';
+                    }
                 }
                 else // Le visiteur n'est pas connecté
                 {
@@ -51,7 +54,7 @@
         ?>
             <div class="list-group">
                 <div class="list-group-item list-group-item-action">
-                    <a href="affichage_ressource.php?ressource=<?php echo htmlspecialchars($row['id_ressource']); ?>"> <?php echo htmlspecialchars(utf8_encode($row['titre_ressource'])); ?></a></br>
+                    <a href="affichage_ressource.php?ressource=<?php echo htmlspecialchars($row['id_ressource']); ?>"> <?php echo htmlspecialchars($row['titre_ressource']); ?></a></br>
                     </br> le <?php echo htmlspecialchars($row['date_creation_ressource']);  ?> </br>
                 </div>
             </div>
